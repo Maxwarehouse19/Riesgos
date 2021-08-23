@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+
+services:
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-CU3-ubuntu-18.04
+    user: '0:0'
+    container_name: qa-dxportal-sql
+    ports:
+      - 1433:1433
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: "PowerBI2021"
+      MSSQL_PID: Express
+    volumes:
+      - ~/docker/sqlserver-data:/var/opt/mssql
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/DxLatamDjPortal
+    ports:
+      - "8000:8000"

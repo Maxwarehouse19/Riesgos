@@ -1,0 +1,703 @@
+{%extends 'base_dashboard.html'%}
+{%block content  %}
+{% load widget_tweaks %}
+<div class="card-body">	
+	<div class="row">	
+		<div class="col-auto mr-auto" style="width: 40%;">
+			<h1>{{message}}</h1>
+		</div>
+		<div class="col-auto mr-auto" style="width: 60%;">
+			<form method="POST" id="grafica1form">
+				{% csrf_token %}
+				{% include 'base_filter.html' with form=form divisiones=2 anchocolumna="col-lg-6"%}
+			</form>					
+		</div>
+	</div>	
+	<hr />
+	<div class="row">
+		<div class="col-auto mr-auto" id="chartdiv7" style="width: 60%; height: 250px; background-color: #FFFFFF;"></div>
+		<div class="col-auto mr-auto" id="chartdiv11" style="width: 40%; height: 250px; background-color: #FFFFFF;"></div>
+	</div>
+	<div class="row">
+		<div class="col-auto mr-auto" id="chartdiv1" style="width: 100%; height: 250px; background-color: #FFFFFF;"></div>
+	</div>
+	<div class="row">
+		<div class="col-auto mr-auto" id="chartdiv10" style="width: 40%; height: 300px; background-color: #FFFFFF;"></div>
+		<div class="col-auto mr-auto" id="chartdiv9" style="width: 60%; height: 300px; background-color: #FFFFFF;"></div>
+	</div>
+	<div class="row">
+		<div class="col-auto mr-auto" id="chartdiv8" style="width: 100%; height: 250px; background-color: #FFFFFF;"></div>
+	</div>
+	<hr />
+	<div class="row">
+		<div class="col-md-auto" id="chartdiv2" style="width: 50%; height: 400px; background-color: #FFFFFF;"></div>
+		<div class="col-md-auto" id="chartdiv3" style="width: 50%; height: 400px; background-color: #FFFFFF;"></div>
+	</div>
+	<div class="row justify-content-start">
+		<div class="col-md-auto" id="chartdiv4" style="width: 50%; height: 400px; background-color: #FFFFFF;"></div>
+		<div class="col-md-auto" id="chartdiv5" style="width: 50%; height: 400px; background-color: #FFFFFF;"></div>
+	</div>
+	<div class="row justify-content-start">
+		<div class="col-md-auto" id="chartdiv7" style="width: 50%; height: 400px; background-color: #FFFFFF;"></div>
+		<div class="col-md-auto" id="chartdiv6" style="width: 50%; height: 400px; background-color: #FFFFFF;"></div>
+	</div>
+</div>
+	
+	
+	<script type="text/javascript" src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+	<script type="text/javascript" src="https://www.amcharts.com/lib/3/serial.js"></script>	
+	<script type="text/javascript" src="https://www.amcharts.com/lib/3/pie.js"></script>
+	<script type="text/javascript" src="https://www.amcharts.com/lib/3/themes/none.js"></script>
+
+	<script type="text/javascript" src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+	
+<!DOCTYPE html>
+<html>
+<head>
+	<title>chart created with amCharts | amCharts</title>
+	<meta name="description" content="chart created using amCharts live editor" />
+
+	<!-- amCharts javascript sources -->
+	<script type="text/javascript" src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+	<script type="text/javascript" src="https://www.amcharts.com/lib/3/serial.js"></script>
+
+
+	<!-- amCharts javascript code -->
+	<script type="text/javascript">
+			AmCharts.makeChart("chartdiv1",
+				{
+					"type": "serial",
+					"fontFamily": "'Poppins', sans-serif",
+					"paddingLeft" : 0,
+					"paddingRight": 0,
+					"categoryField": "category",
+					"startDuration": 1,
+					"categoryAxis": {
+						"gridPosition": "start",
+						"boldLabels": true,
+					    "autoWrap": true,
+					},
+					"theme": "light",
+					"trendLines": [],
+					"graphs": [
+						{% for Excepcion in Excepciones %}
+						{
+							"balloonText": "[[title]] >> [[value]] = [[percents]]%",
+							"fillAlphas": 1,
+							"id": "{{Excepcion}}",
+							"labelAnchor": "middle",
+							"labelPosition": "right",
+							"showAllValueLabels": true,
+							"title": "{{Excepcion}}",
+							"type": "column",
+							"valueField": "{{Excepcion}}",
+						},
+						{% endfor %}
+					],
+					"guides": [],
+					"valueAxes": [
+						{
+							"id": "ValueAxis-1",
+							"stackType": "100%",
+							"title": "Cantidad Atrasos"
+						}
+					],
+					"allLabels": [],
+					"balloon": {},
+					"legend": {
+						"enabled": true,
+						"useGraphSettings": true,
+						"valueWidth": 0,
+						"position": "right",
+						"align": "absolute",
+						"spacing": 0,
+						"wrap": true,
+					},
+					"titles": [
+						{
+							"id": "Title-1",
+							"size": 15,
+                            "text": "% de Excepciones del {{prfecha_inicial|date:'d/m/Y'}} al {{prfecha_final|date:'d/m/Y'}}"
+						}
+					],
+					"dataProvider":{{ data|safe }}
+				}
+			);
+	</script>
+	<script>
+
+				AmCharts.makeChart("chartdiv2",
+				{
+					"theme": "light",
+					"type": "pie",
+					"fontFamily": "'Poppins', sans-serif",
+					"angle": 12,
+					"balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+					"depth3D": 5,
+					"innerRadius": "40%",
+                    "titleField": "ultimaexcepcion",
+					"valueField": "cantidad",
+					"marginBottom": 0,
+					"marginTop": 0,
+					"marginLeft":0,
+					"marginRight":0,
+					"paddingTop":0,
+					"radius": "30%",
+					"alignLabels": false,
+					"labels": {
+						  "maxWidth": 30,
+						  "truncate": true,
+						  "wrap": true,
+  						  "text": "{value.percent.formatNumber('#.0')}%",
+						  "radius": "-40%",
+					},
+					"allLabels": [
+					],
+					"balloon": {},
+					"legend": {
+						"enabled": true,
+						"align": "left",
+						"markerType": "circle",
+						"position": "left",
+						"valueWidth": 0,
+						"spacing": 0,
+						"marginTop": 0,
+						"labelWidth":100
+					},
+					"titles": [
+						{
+							"id": "Title-1",
+                            "text": "Excepciones de Amazon del {{prfecha_inicial|date:'d/m/Y'}} al {{prfecha_final|date:'d/m/Y'}}",
+							"marginBottom":0,
+						}
+					],
+					"dataProvider":{{ json_Amazon|safe }}
+				}
+			);
+	</script>
+	<script>
+
+			AmCharts.makeChart("chartdiv3",
+			{
+					"theme": "light",
+					"type": "pie",
+					"fontFamily": "'Poppins', sans-serif",
+					"angle": 12,
+					"balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+					"depth3D": 5,
+					"innerRadius": "40%",
+					"titleField": "ultimaexcepcion",
+					"valueField": "cantidad",
+					"marginBottom": 0,
+					"marginTop": 0,
+					"marginLeft":0,
+					"marginRight":0,
+					"paddingTop":0,
+					"radius": "30%",
+					"alignLabels": false,
+					"labels": {
+						  "maxWidth": 30,
+						  "truncate": true,
+						  "wrap": true,
+  						  "text": "{value.percent.formatNumber('#.0')}%",
+						  "radius": "-40%",
+					},
+					"allLabels": [
+
+					],
+					"balloon": {},
+					"legend": {
+						"enabled": true,
+						"align": "left",
+						"markerType": "circle",
+						"position": "left",
+						"valueWidth": 0,
+						"spacing": 0,
+						"marginTop": 0,
+						"labelWidth":100
+					},
+				"titles": [
+					{
+						"id": "Title-1",
+                        "text": "Excepciones de eBay del {{prfecha_inicial|date:'d/m/Y'}} al {{prfecha_final|date:'d/m/Y'}}",
+						"marginBottom":0,
+					}
+				],
+				"dataProvider":{{ json_eBay|safe }}
+			}
+		);
+	</script>
+	<script>
+
+			AmCharts.makeChart("chartdiv4",
+			{
+					"theme": "light",
+					"type": "pie",
+					"fontFamily": "'Poppins', sans-serif",
+					"angle": 12,
+					"balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+					"depth3D": 5,
+					"innerRadius": "40%",
+					"titleField": "ultimaexcepcion",
+					"valueField": "cantidad",
+					"marginBottom": 0,
+					"marginTop": 0,
+					"marginLeft":0,
+					"marginRight":0,
+					"paddingTop":0,
+					"radius": "30%",
+					"alignLabels": false,
+					"labels": {
+						  "maxWidth": 30,
+						  "truncate": true,
+						  "wrap": true,
+  						  "text": "{value.percent.formatNumber('#.0')}%",
+						  "radius": "-40%",
+					},
+					"allLabels": [
+
+					],
+					"balloon": {},
+					"legend": {
+						"enabled": true,
+						"align": "left",
+						"markerType": "circle",
+						"position": "left",
+						"valueWidth": 0,
+						"spacing": 0,
+						"marginTop": 0,
+						"labelWidth":100
+					},
+				"titles": [
+					{
+						"id": "Title-1",
+                        "text": "Excepciones de Shopify del {{prfecha_inicial|date:'d/m/Y'}} al {{prfecha_final|date:'d/m/Y'}}",
+						"marginBottom":0,
+					}
+				],
+				"dataProvider":{{ json_Shopify|safe }}
+			}
+		);
+	</script>
+	<script>
+
+			AmCharts.makeChart("chartdiv5",
+			{
+					"theme": "light",
+					"type": "pie",
+					"fontFamily": "'Poppins', sans-serif",
+					"angle": 12,
+					"balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+					"depth3D": 5,
+					"innerRadius": "40%",
+					"titleField": "ultimaexcepcion",
+					"valueField": "cantidad",
+					"marginBottom": 0,
+					"marginTop": 0,
+					"marginLeft":0,
+					"marginRight":0,
+					"paddingTop":0,
+					"radius": "30%",
+					"alignLabels": false,
+					"labels": {
+						  "maxWidth": 30,
+						  "truncate": true,
+						  "wrap": true,
+  						  "text": "{value.percent.formatNumber('#.0')}%",
+						  "radius": "-40%",
+					},
+					"allLabels": [
+
+					],
+					"balloon": {},
+					"legend": {
+						"enabled": true,
+						"align": "left",
+						"markerType": "circle",
+						"position": "left",
+						"valueWidth": 0,
+						"spacing": 0,
+						"marginTop": 0,
+						"labelWidth":100
+					},
+				"titles": [
+					{
+						"id": "Title-1",
+                        "text": "Excepciones de Walmart del {{prfecha_inicial|date:'d/m/Y'}} al {{prfecha_final|date:'d/m/Y'}}",
+						"marginBottom":0,
+					}
+				],
+				"dataProvider":{{ json_Walmart|safe }}
+			}
+		);
+	</script>
+	<script>
+
+			AmCharts.makeChart("chartdiv6",
+			{
+					"theme": "light",
+					"type": "pie",
+					"fontFamily": "'Poppins', sans-serif",
+					"angle": 12,
+					"balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+					"depth3D": 5,
+					"innerRadius": "40%",
+					"titleField": "ultimaexcepcion",
+					"valueField": "cantidad",
+					"marginBottom": 0,
+					"marginTop": 0,
+					"marginLeft":0,
+					"marginRight":0,
+					"paddingTop":0,
+					"radius": "30%",
+					"alignLabels": false,
+					"labels": {
+						  "maxWidth": 30,
+						  "truncate": true,
+						  "wrap": true,
+  						  "text": "{value.percent.formatNumber('#.0')}%",
+						  "radius": "-40%",
+					},
+					"allLabels": [
+
+					],
+					"balloon": {},
+					"legend": {
+						"enabled": true,
+						"align": "left",
+						"markerType": "circle",
+						"position": "left",
+						"valueWidth": 0,
+						"spacing": 0,
+						"marginTop": 0,
+						"labelWidth":100
+					},
+				"titles": [
+					{
+						"id": "Title-1",
+                        "text": "Excepciones de Google Shopping del {{prfecha_inicial|date:'d/m/Y'}} al {{prfecha_final|date:'d/m/Y'}}",
+						"marginBottom":0,
+					}
+				],
+				"dataProvider":{{ json_Google_Shopping|safe }}
+			}
+		);
+	</script>
+	<script type="text/javascript">
+			AmCharts.makeChart("chartdiv7",
+				{
+					"type": "serial",
+					"fontFamily": "'Poppins', sans-serif",
+					"paddingLeft": 0,
+					"paddingRight": 0,
+					"categoryField": "channel",
+					"startDuration": 1,
+					"categoryAxis": {
+						"gridPosition": "start",
+						"boldLabels": true,
+						"autoWrap": true,
+					},
+					"theme": "light",
+					"trendLines": [],
+					"graphs": [
+						{
+							"balloonText": "[[title]] of [[channel]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "En Tiempo",
+							"labelAnchor": "middle",
+							"labelPosition": "right",
+							"showAllValueLabels": true,
+							"title": "En Tiempo",
+							"type": "column",
+							"valueField": "sum_entiempo",
+							"labelText": "[[value]]",
+							"labelPosition": "top",
+                            "hidden": true,
+
+						},
+						{
+							"balloonText": "[[title]] of [[channel]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "Tarde",
+							"labelAnchor": "middle",
+							"labelPosition": "right",
+							"showAllValueLabels": true,
+							"title": "Tarde",
+							"type": "column",
+							"valueField": "sum_tarde",
+							"labelText": "[[value]]",
+							"labelPosition": "top"
+						},
+					],
+					"guides": [],
+					"valueAxes": [
+						{
+							"id": "ValueAxis-1",
+							//"stackType": "100%",
+                            "title": "Cantidad de Ordenes"
+						}
+					],
+					"allLabels": [],
+					"balloon": {},
+					"legend": {
+						"enabled": true,
+						"useGraphSettings": true,
+						"valueWidth": 0,
+						"position": "left",
+						"align": "absolute",
+						"spacing": 0,
+						"wrap": true,
+					},
+					"titles": [
+						{
+							"id": "Title-1",
+							"size": 15,
+                            "text": "Cantidad de Ordenes a Tiempo vs Tarde X Channel del {{prfecha_inicial|date:'d/m/Y'}} al {{prfecha_final|date:'d/m/Y'}}"
+						}
+					],
+					"dataProvider":{{ resResumeninsightlate|safe }}
+				}
+			);
+	</script>
+	<script>
+						AmCharts.makeChart("chartdiv8",
+						{
+							"type": "serial",
+							"fontFamily": "'Poppins', sans-serif",
+							"paddingLeft" : 0,
+							"paddingRight": 0,
+							"categoryField": "str_fechaingreso",
+							"startDuration": 1,
+							"categoryAxis": {
+								"gridPosition": "start",
+								"boldLabels": true,
+								"autoRotateAngle": 90,
+								"autoRotateCount": 0,
+								"labelFrequency": 1,
+								"gridCount": 1,
+							},
+							"theme": "light",
+							"trendLines": [],
+							"graphs": [
+								{
+									"bullet": "round",
+									"balloonText": "[[title]] of [[category]]:[[value]]",
+									"fillAlphas": 1,
+									"id": "AmGraph-1",
+									"title": "En Tiempo",
+									"valueField": "sum_entiempo",
+									"labelText" : "[[value]]",
+								    "fillAlphas": 0.35,
+									"lineThickness": 3,
+									"hidden": true,
+								},
+								{
+									"bullet": "round",
+									"balloonText": "[[title]] of [[category]]:[[value]]",
+									"fillAlphas": 1,
+									"id": "AmGraph-2",
+									"title": "Tarde",
+									"valueField": "sum_tarde",
+									"labelText" : "[[value]]",
+									"fillAlphas": 0.35,
+									"lineThickness": 3,
+								},
+							],
+							"guides": [],
+							"valueAxes": [
+								{
+									"id": "ValueAxis-1",
+									"title": "En tiempo vs Atraso",
+
+								}
+							],
+							"allLabels": [],
+							"balloon": {},
+							"legend": {
+								"enabled": true,
+								"useGraphSettings": true,
+								"valueWidth": 0,
+								"position": "left",
+								"align": "absolute",
+								"spacing": 0,
+							},
+							"titles": [{
+									"id": "Title-1",
+									"text": "Cantidad de Ordenes en Tiempo vs Tarde Mensual"
+							}],
+							"dataProvider":{{ resResumeninsightlate2|safe }}
+						}
+					);
+	</script>
+	<script type="text/javascript">
+				AmCharts.makeChart("chartdiv9",
+					{
+						"type": "serial",
+						"fontFamily": "'Poppins', sans-serif",
+						"paddingLeft" : 0,
+						"paddingRight": 0,
+						"categoryField": "fulfillmentlocationname",
+						"startDuration": 1,
+						"categoryAxis": {
+							"gridPosition": "start",
+							"boldLabels": true,
+							"autoWrap": true,
+						},
+						"theme": "light",
+						"trendLines": [],
+						"graphs": [
+							{
+								"balloonText": "[[category]]: [[value]]",
+								"fillAlphas": 1,
+								"id": "fulfillmentlocationname",
+								"labelAnchor": "middle",
+								"labelPosition": "right",
+								"showAllValueLabels": true,
+                                "title": "Fullfillement Location",
+								"type": "column",
+								"valueField": "cantidad",
+							},
+						],
+						"guides": [],
+						"valueAxes": [
+							{
+								"id": "ValueAxis-1",
+								"title": "Cantidad Atrasos"
+							}
+						],
+						"allLabels": [],
+						"balloon": {},
+						"legend": {
+							"enabled": false,
+							"useGraphSettings": true,
+							"valueWidth": 0,
+							"position": "left",
+							"align": "absolute",
+							"spacing": 0,
+							"wrap": true,
+						},
+						"titles": [
+							{
+								"id": "Title-1",
+								"size": 15,
+                                "text": "Cantidad de Entrgas Tarde X Location del {{prfecha_inicial|date:'d/m/Y'}} al {{prfecha_final|date:'d/m/Y'}}"
+							}
+						],
+						"dataProvider":{{ Amazonlate_json|safe }}
+					}
+				);
+	</script>
+	<script>
+
+				AmCharts.makeChart("chartdiv10",
+				{
+						"labelText": " [[percents]]%",
+						"labelRadius": 2,
+						"theme": "light",
+						"type": "pie",
+						"fontFamily": "'Poppins', sans-serif",
+						"angle": 12,
+						"balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+						"depth3D": 5,
+						"innerRadius": "40%",
+						"titleField": "fulfillmentlocationname",
+						"valueField": "cantidad",
+						"marginBottom": 0,
+						"marginTop": 0,
+						"marginLeft":0,
+						"marginRight":0,
+						"paddingTop":0,
+						"radius": "30%",
+						"alignLabels": false,
+						"labels": {
+							  "maxWidth": 4,
+							  "truncate": true,
+							  "wrap": true,
+							  "radius": "-40%",
+						},
+						"allLabels": [
+
+						],
+						"balloon": {},
+						"legend": {
+							"enabled": true,
+							"align": "left",
+							"markerType": "circle",
+							"position": "left",
+							"valueWidth": 0,
+							"spacing": 0,
+							"marginTop": 0,
+							"labelWidth":100
+						},
+					"titles": [
+						{
+							"id": "Title-1",
+                            "text": "Entrgas Tarde X Location del {{prfecha_inicial|date:'d/m/Y'}} al {{prfecha_final|date:'d/m/Y'}}",
+							"marginBottom":0,
+						}
+					],
+					"dataProvider":{{ Amazonlate_json|safe }}
+				}
+			);
+	</script>
+	<script>
+			AmCharts.makeChart("chartdiv11",
+			{
+					"labelText": " [[percents]]%",
+					"labelRadius": 2,
+					"theme": "light",
+					"type": "pie",
+					"fontFamily": "'Poppins', sans-serif",
+					"angle": 12,
+					"balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+					"depth3D": 5,
+					"innerRadius": "40%",
+					"titleField": "channel",
+					"valueField": "sum_tarde",
+					"marginBottom": 0,
+					"marginTop": 0,
+					"marginLeft":0,
+					"marginRight":0,
+					"paddingTop":0,
+					"radius": "30%",
+					"alignLabels": false,
+					"labels": {
+							"maxWidth": 4,
+							"truncate": true,
+							"wrap": true,
+							"radius": "-40%",
+					},
+					"allLabels": [
+
+					],
+					"balloon": {},
+					"legend": {
+						"enabled": true,
+						"align": "left",
+						"markerType": "circle",
+						"position": "right",
+						"valueWidth": 0,
+						"spacing": 0,
+						"marginTop": 0,
+						"labelWidth":100
+					},
+				"titles": [
+					{
+						"id": "Title-1",
+                        "text": "Entrgas Tarde X Channel del {{prfecha_inicial|date:'d/m/Y'}} al {{prfecha_final|date:'d/m/Y'}}",
+						"marginBottom":0,
+					}
+				],
+                    "dataProvider": {{resResumeninsightlate|safe }}
+			}
+		);
+	</script>
+</head>
+	<body>
+		
+	</body>
+</html>
+{% endblock %}

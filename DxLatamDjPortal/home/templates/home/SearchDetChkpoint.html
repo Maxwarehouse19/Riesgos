@@ -1,0 +1,71 @@
+{%extends 'base.html'%}
+{%load static%}
+{% block content %}
+<div id="layoutSidenav">
+	<main>     		
+		<div class="container-fluid">
+			<div class="card mb-4">
+				<div class="card-header">
+					<i class="fas fa-table mr-1"></i>
+						{{ title }}. - {{ message }}
+				</div>
+			</div>
+		
+			{% if DetChkPoint_list %}
+
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+						<thead>
+							<tr>
+								<th>C&oacute;digo </th>
+								<th>Punto de Venta </th> 
+								<th>Fecha Inicial</th> 
+								<th>Fecha Final</th> 
+								<th>Hora Inicial  </th> 
+								<th>Hora Final  </th> 
+								<th>Cantidad Diferencia Mínimo</th> 
+								<th>% Tolerancia Superior</th>
+								<th>% Tolerancia Inferior</th>		
+								<th>Estado</th>										
+								<th>Editar</th>		
+								<th>Eliminar</th>		
+							</tr>
+						</thead>						
+						{% for DetChkPoint in DetChkPoint_list %}
+						<tbody>
+							<tr>
+								<td> {{DetChkPoint.idchkpoint}}		</td> 
+								<td> {{DetChkPoint.canalytiposorden}}  	</td>
+								<td> {{DetChkPoint.fechainicial}}		</td>
+								<td> {{DetChkPoint.fechafinal}} 		</td>     
+								<td> {{DetChkPoint.horainicial}}      	</td> 
+								<td> {{DetChkPoint.horafinal}} 		</td>     
+								<td> {{DetChkPoint.valordifminimo}} 		</td>     								
+								<td> {{DetChkPoint.toleranciainferior}} 		</td>     
+								<td> {{DetChkPoint.toleranciasuperior}} 		</td>     
+								<td> {{DetChkPoint.estado}} 		</td>     								
+
+								<td>  <a href="/editDetChkPoint/{{ DetChkPoint.idregistro }}">Editar</a> </td>	
+								<td>
+									<a href="/deleteDetChkPoint/{{ DetChkPoint.idregistro }}" 
+									onClick="return confirm('¿Seguro que quieres borrar a {{DetChkPoint.idchkpoint}} - {{DetChkPoint.canalytiposorden}}?');">
+										Borrar
+									</a>			
+								</td>
+							</tr>
+						</tbody>
+						{% endfor %}	  
+					</table>	  
+				</div>
+			</div>
+		   {% else %}
+			  <p>No hay puntos de validación.</p> 
+		   {% endif %}
+		   	
+			<a href="/addDetChkPoint">  <button class="btn btn-primary">Crear punto Detalle de validaci&oacute;n nuevo</button></a>
+			
+		</div>		
+	</main>
+</div>
+{% endblock %}

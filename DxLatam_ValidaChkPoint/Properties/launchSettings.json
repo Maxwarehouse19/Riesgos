@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DxLatam_ValidaChkPoint": {
+      "commandName": "Project",
+      "commandLineArgs": "\"..\\\\..\\\\SRC\\\\SETUP.INI\""
+    }
+  }
+}

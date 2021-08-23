@@ -1,0 +1,68 @@
+{%extends 'base.html'%}
+{%load static%}
+{% block content %}
+<div id="layoutSidenav">
+	<main>     		
+		<div class="container-fluid">
+			<div class="card mb-4">
+				<div class="card-header">
+					<i class="fas fa-table mr-1"></i>
+						{{ title }}. - {{ message }}
+				</div>
+			</div>
+		
+			{% if LISTACONTACTOS_list %}
+
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+						<thead>
+							<tr>
+								<th>C&oacute;digo Lista</th>
+								<th>Nombre Lista</th> 
+								<th>C&oacute;digo Contacto</th> 
+								<th>Estado</th>		
+								<th>Editar </th>		
+								<th>Eliminar</th>	
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<th>C&oacute;digo Lista</th>
+								<th>Nombre Lista</th> 
+								<th>C&oacute;digo Contacto</th> 
+								<th>Estado</th>		
+								<th>Editar </th>		
+								<th>Eliminar</th>	
+							</tr>
+						</tfoot>
+						{% for LISTACONTACTO in LISTACONTACTOS_list %}
+						<tbody>
+							<tr>
+								<td> {{LISTACONTACTO.idlista}}		</td> 
+								<td> {{LISTACONTACTO.descripcion}}	</td>
+								<td> {{LISTACONTACTO.idcontacto}}        	</td> 
+								<td> {{LISTACONTACTO.estado}} 		</td>     
+								<td>  <a href="{% url 'editListacontacto' LISTACONTACTO.idregistro %}">Editar</a> </td>	
+								<td>
+									<a href="/deleteListacontacto/{{ LISTACONTACTO.idregistro }}" 
+										onClick="return confirm('¿Seguro que quieres qutar a {{LISTACONTACTO.idcontacto}} de la lista {{LISTACONTACTO.descripcion}}?');">
+										Borrar
+									</a>			
+								</td>
+							</tr>
+						</tbody>
+						{% endfor %}	  
+					</table>	  
+				</div>
+			</div>
+		   {% else %}
+			  <p>No hay contactos.</p> 
+		   {% endif %}
+		   	
+			<a href="/addListacontacto">  <button class="btn btn-primary">Asociar contacto a lista</button></a>
+			
+		</div>		
+	</main>
+</div>
+{% endblock %}

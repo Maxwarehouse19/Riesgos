@@ -1,0 +1,147 @@
+{%extends 'base.html'%}
+{%load static%}
+{% block content %}
+<div id="layoutSidenav">
+	<main>     	
+		 <script>
+  $(function() {
+    $( ".datepicker" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      yearRange: "1900:2012",
+      // You can put more options here.
+
+    });
+  });
+  </script>
+		<div class="card-body">	
+			{% if asin or asin2 %}	
+			<div class="table-responsive">
+				<table class="table" id="#" width="100%" cellspacing="0">
+														
+					<tbody>
+						<tr>
+							<th>Producto Amazon<br /><img style="max-height:200px;max-width:300px;object-fit: contain;" src="{{linkimagen}}" /></th>
+							<th>Producto EVP<br /><img style="max-height:200px;max-width:300px;object-fit: contain;" src="{{linkimg}}" /></th>	
+							<td rowspan="18" width="45%">
+								{%ifequal usuario 'supervisor'%}
+									<table class="table" cellspacing="0">
+										<thead>
+											<tr>
+												<th>Pregunta</th>
+												<th>Respuesta Operador</th>
+											</tr>
+										</thead>
+										<tbody>
+											{%for pregresp in union%}
+												<tr>
+													{%for columna in pregresp%}
+														<td>{{columna}}</td>
+													{%endfor%}
+												</tr>
+											{%endfor%}
+										</tbody>
+									</table>
+								{%endifequal%}
+								<div class="container">
+									<div class="row justify-content-center">                
+										<div class="card shadow-lg border-0 rounded-lg mt-auto">
+											<div class="card-body">
+												<table border="1">
+													<form method="post" novalidate>
+														{% csrf_token %}
+														{% include 'base_form2.html' with form=form %}
+														<button type="submit" class="btn btn-primary" name="action">Agregar</button>
+													</form>
+												</table>
+											</div>					
+										</div>				
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><b>ASIN:  </b>{{asin}}</td>
+							<td><b>ASIN:  </b>{{asin2}}</td>
+							
+						</tr>
+						<tr>
+							<td rowspan="2"><b>Tittle:  </b>{{tittle}}</td>
+							<td><b>Tittle:  </b>{{tittle2}}</td>
+						</tr>
+						<tr>
+							
+							<td><b>Search Desc:  </b>{{searchdesc}}</td>
+						</tr>
+						<tr>
+							<td><b>Manufacturer:  </b>{{manufacturer}}</td>
+							<td><b>Manufacturer:  </b>{{manufacturer2}}</td>
+						</tr>
+						<tr>
+							<td><b>Brand:  </b>{{brand}}</td>
+							<td><b>Brand:  </b>{{brand2}}</td>
+						</tr>
+						<tr>
+							<td>{% if partnumber %}
+									<b>Part Number:  </b>{{partnumber}}
+								 {%else %}
+									<b>Part Number:  </b>{{itemmodelnumber}}
+								 {% endif %}</td>
+							<td><b>Part Number:  </b>{{partnumber2}}</td>
+						</tr>
+						<tr>
+							<td><b>Package Quantity:  </b>{{itempackagequantity}}</td>
+							<td><b>Package Quantity:  </b>{{itempackagequantity2}}</td>
+						</tr>
+						<tr>
+							<td><b>Product Dimensions:  </b>{{productdimensions}}</td>
+							<td><b>Product Dimensions:  </b>{{productdimensions2}}</td>
+						</tr>
+						<tr>
+							<td><b>Weight:  </b>{{itemweight}}</td>
+							<td><b>Weight:  </b>{{itemweight2}}</td>
+						</tr>
+						<tr>
+							<td><b>Price:  </b>{{price}}</td>
+							<td><b>Price:  </b></td>
+						</tr>
+						<tr>
+							<td><b>Material:  </b>{{material}}</td>
+							<td><b>Material:  </b></td>
+						</tr>
+						<tr>
+							<td><b>Color:  </b>{{color}}</td>
+							<td><b>Color:  </b></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><b>Sales Listing:  </b>{{saleslisting}}</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><b>SKU:  </b>{{sku}}</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><b>UOM Quantity:  </b>{{uomquantity}}</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><b>Master SKU:  </b>{{mastersku}}</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><b>UOM Quantity EJD/ACE:  </b>{{ejdace}}</td>
+						</tr>
+					</tbody>	  
+				</table>
+				
+			</div>			
+		   {% else %}
+			  <p>No hay datos para este Listing.</p> 
+		   {% endif %}
+			
+		</div>
+	</main>
+</div>
+{% endblock %}

@@ -1,0 +1,176 @@
+
+<div id="layoutSidenav_nav">
+    <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+            <div class="nav">
+                <div class="sb-sidenav-menu-heading">&Aacute;rea central</div>
+                <a class="nav-link" href="/home/">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Inicio
+                </a>  
+                {% if perms.home.graph_lateshidate or perms.home.graph_shipping or perms.home.graph_salesorders or user.is_superuser %}
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts0" aria-expanded="false" aria-controls="collapseLayouts">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Dashboards                    
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    
+                    <div class="collapse" id="collapseLayouts0" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                        {% if perms.home.graph_salesorders or user.is_superuser %}
+                            <a class="nav-link" href="/dashboard/">
+                                Cantidad de &Oacute;rdenes de Venta
+                            </a>
+                        {% endif %}
+                        {% if perms.home.graph_shipping or user.is_superuser %}
+                        <a class="nav-link" href="/Grafica2/">
+                            Controles de Shippping
+                        </a>
+                        {% endif %}
+                        {% if perms.home.graph_lateshidate or user.is_superuser %}
+                        <a class="nav-link" href="/Grafica3/">
+                            Latest Shipdate
+                        </a>
+                        {% endif %}
+                        </nav>
+                    </div>
+                {%endif%}
+
+                <div class="sb-sidenav-menu-heading">Configuraci&oacute;n</div>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Mantenimientos
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        {% if perms.home.view_alecontactos or user.is_superuser%}
+                            <a class="nav-link" href="/searchContacto/">
+                                Contactos
+                            </a>
+                        {% endif %}
+                        {% if perms.home.view_alelistacontacto or user.is_superuser%}
+                            <a class="nav-link" href="/searchListaContacto/">
+                                Listas de Contactos
+                            </a>
+                        {% endif %}
+                        {% if perms.home.view_alemensaje or user.is_superuser%}
+                            <a class="nav-link" href="/searchMensaje/">
+                                Mensajes
+                            </a>
+                        {% endif %}
+                        {% if perms.home.view_alechkpoint or user.is_superuser%}
+                            <a class="nav-link" href="/searchChkPoint/">
+                                Puntos de Validaci&oacute;n
+                            </a>
+                        {% endif %}
+                        {% if perms.home.view_altchkpoint or user.is_superuser%}                        
+                                <a class="nav-link" href="/filterDetChkPoint/">
+                                Detalle de Puntos de Validaci&oacute;n
+                            </a>
+                        {% endif %}
+                        {% if perms.home.view_category or user.is_superuser%}                        
+                            <a class="nav-link" href="/searchCategory/">
+                                Categor&iacute;as
+                            </a>
+                        {% endif %}
+                        {% if perms.home.view_locationlatency or user.is_superuser%}                        
+                            <a class="nav-link" href="/searchLocationLatency/">
+                                Latencia por ubicaci&oacute;n
+                            </a>
+                        {% endif %}
+                        {% if perms.home.view_locationlatency or user.is_superuser%}                        
+                            <a class="nav-link" href="/searchStaticparams/LShipdate">
+                                Par&aacute;metros Last Shipdate
+                            </a>
+                        {% endif %}
+                    </nav>
+                </div>
+                <div class="sb-sidenav-menu-heading">Reportes</div>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Reportes
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a> 
+                <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        {% if perms.home.reports_alerts or user.is_superuser%}                        
+                        <a class="nav-link" href="/RepDetalleMensajes/">
+                            Mensajes Enviados 
+                        </a>
+                        {% endif %}
+                        {% if perms.home.reports_shipping or user.is_superuser%} 
+                        <a class="nav-link" href="/RepReqVsActual/">
+                            Requested vs Actual
+                        </a>                        
+                        <a class="nav-link" href="/RepPromedioServicio/">
+                            Promedio Servicio
+                        </a>                
+                        <a class="nav-link" href="/RepAmazonlate/">
+                            Amazon Late
+                        </a>                                        
+                        {%endif%}
+                        {% if perms.home.reports_lateshidate or user.is_superuser %}
+                            <a class="nav-link" href="/RepLatestShipDate/">
+                                Latest Shipdate
+                            </a>
+                            <a class="nav-link" href="/RepBitacoraDecambios/">
+                                Bitacora de Cambios
+                            </a>            
+                            <a class="nav-link" href="/RepLatestshipdatesku/">
+                                Cantidad de SKU
+                            </a>            
+                        {% endif %}
+                        {% if user.is_superuser %}
+                            <a class="nav-link" href="/repLote/">
+                                    Conteo de Lotes de Operadores
+                            </a>   
+                        {%else %}
+                            {% for group in user.groups.all %}
+                                {% if group.name == 'Supervisor' or user.is_superuser %}
+                                    <a class="nav-link" href="/repLote/">
+                                        Conteo de Lotes de Operadores
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </nav>
+                </div>
+                {% if user.is_superuser %}
+                    <div class="sb-sidenav-menu-heading">Lotes</div>
+                    <a class="nav-link" href="/searchLote/">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Lotes
+                    </a>   
+                     <a class="nav-link" href="/revisarOperadores/">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Revisi&oacute;n
+                    </a>   
+                {%else %}
+                     {% for group in user.groups.all %}
+                        {% if group.name == 'Operador' or group.name == 'Supervisor' or user.is_superuser %}
+                            <div class="sb-sidenav-menu-heading">Lotes</div>
+                            <a class="nav-link" href="/searchLote/">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Lotes
+                            </a>  
+                            {% if group.name == 'Supervisor'%}
+                                <a class="nav-link" href="/revisarOperadores/">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                    Revisi&oacute;n
+                                </a>  
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+        </div>
+        <div class="sb-sidenav-footer">
+            {% if user.is_authenticated %}
+                <div class="small">Usuario: {{ user.username }} </div>
+            {% else %}
+                <div class="small">Iniciar Sesi&oacute;n</div>
+            {% endif %}
+            <small class="text-muted">{{date_field|date:"SHORT_DATE_FORMAT"}} {{date_field|time:"h:i a"}}</small>
+        </div>
+    </nav>
+</div>    

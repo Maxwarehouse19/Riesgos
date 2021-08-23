@@ -1,0 +1,10 @@
+version: "3.4"
+
+services:
+  console:
+    container_name: qa-modulo-alerta
+    image: qa-modulo-alerta
+    restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile

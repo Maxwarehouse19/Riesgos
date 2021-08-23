@@ -1,0 +1,96 @@
+{%extends 'base.html'%}
+{%load static%}
+{% block content %}
+<div id="layoutSidenav">
+	<main>     		
+		<div class="card-body">
+			{% if perms.home.add_alemensaje %}
+			<a href="/addMensaje">  <button class="btn btn-primary">Crear mensaje nuevo</button></a>
+			<hr />		
+			{% endif %}
+			{% if MENSAJE_list %}
+			<div class="table-responsive">
+				<table class="table table-bordered" id="#" width="100%" cellspacing="0">
+					<thead>
+						<tr>							
+							<th>Código del Mensaje</th>
+							<th>Criterio</th> 
+							<th>Lista de Contactos </th> 
+							<th>Subject</th> 
+							<th>Contenido</th>
+							<th>Estado</th>		
+							{% if perms.home.change_alemensaje %}
+							<th>Editar</th>		
+							{% endif %}
+							{% if perms.home.delete_alemensaje %}
+							<th>Eliminar</th>	
+							{% endif %}
+						</tr>
+					</thead>						
+					{% for MENSAJE in MENSAJE_list %}
+					<tbody>							
+						<tr>
+							<td> {{MENSAJE.idmensaje}}	</td> 
+							<td> {{MENSAJE.criterio}}	</td>
+							<td> {{MENSAJE.idlista}}    </td> 
+							<td> {{MENSAJE.subject}}  	</td>
+							<td> {{MENSAJE.mensaje}} 	</td>         
+							<td> {{MENSAJE.estado}} 	</td>     
+							{% if perms.home.change_alemensaje %}
+							<td>  <a href="/editMensaje/{{ MENSAJE.idregistro }}">Editar</a> </td>	
+							{%endif%}
+							{% if perms.home.delete_alemensaje %}
+							<td>
+								<a href="/deleteMensaje/{{ MENSAJE.idregistro }}" 
+								onClick="return confirm('¿Seguro que quieres borrar el mensaje {{MENSAJE.idmensaje}} con criterio {{MENSAJE.criterio}}?');">
+									Borrar
+								</a>			
+							</td>
+							{%endif%}
+						</tr>
+					</tbody>
+					{% endfor %}	  
+				</table>	  
+			</div>			
+			{% else %}
+				<p>No hay contactos.</p> 
+			{% endif %}		   
+			<div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">			
+				{% if filter2.has_other_pages %}
+				  <ul class="pagination">
+					{% if filter2.has_previous %}
+					  <li class="paginate_button page-item previous enabeled" id="dataTable_previous"><a href="?page=1" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">First</a></li>
+					  <li class="paginate_button page-item previous enabeled" id="dataTable_previous"><a href="?page={{ filter2.previous_page_number }}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+					{% else %}
+			  		  <li class="paginate_button page-item previous inactive" id="dataTable_previous"><a href="?page=1" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">First</a></li>			
+					  <li class="paginate_button page-item previous inactive" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+					{% endif %}
+				
+					   <li class="paginate_button page-item active">
+						   <a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">
+								Page {{ filter2.number }} of {{ filter2.paginator.num_pages }}.
+						   </a>
+					   </li>
+				
+					{% if filter2.has_next %}
+					  <li class="paginate_button page-item next enabled" id="dataTable_next">
+						<a href="?page={{ filter2.next_page_number }}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">Next</a>
+					  </li>
+					  <li class="paginate_button page-item next enabled" id="dataTable_next">
+						<a href="?page={{ filter2.paginator.num_pages }}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">Last</a>
+					  </li>
+					{% else %}
+					  <li class="paginate_button page-item next inactive" id="dataTable_next">
+						<a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">Next</a>
+					  </li>
+					  <li class="paginate_button page-item next inactive" id="dataTable_next">
+						<a href="?page={{ filter2.paginator.num_pages }}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">Last</a>
+					  </li>
+					{% endif %}
+				  </ul>
+				{% endif %}
+			</div>
+		</div>
+	</main>
+</div>
+{% endblock %}

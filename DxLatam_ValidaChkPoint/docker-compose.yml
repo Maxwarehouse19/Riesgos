@@ -1,0 +1,11 @@
+
+version: '3.4'
+
+services:
+  console:
+    container_name: qa-validar-chkpoint
+    image: dxlatamvalidachkpoint
+    restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile

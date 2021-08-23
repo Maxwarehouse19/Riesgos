@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="DxLatamModuloAlertas">
+      <HintPath>..\DxModuloAlertas\DxLatamModuloAlertas\obj\Debug\net5.0\DxLatamModuloAlertas.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SqlServer.ConnectionInfo" Version="150.18097.0-xplat" />
+  </ItemGroup>
+
+</Project>

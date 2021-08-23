@@ -1,0 +1,52 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block content%}
+{%load plotly_dash%}
+<h1>Portal para DashBoard</h1>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-chart-area mr-1"></i>
+                Gr&aacute;fica de Puntos
+            </div>
+            <div class="card-body">
+                {% plotly_app name="SimpleExample" ratio=0.5 %}
+            </div>
+            <div class="card-footer small text-muted">Cantidad de Ordenes de Compra</div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-chart-area mr-1"></i>
+                Gr&aacute;fica de L&iacute;nea Cont&iacute;nua
+            </div>
+            <div class="card-body">
+                {% plotly_app name="SimpleExample2" ratio=0.5 %}
+            </div>
+            <div class="card-footer small text-muted">Cantidad de Ordenes de Compra</div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-chart-pie mr-1"></i>
+                Gr&aacute;fica Circular
+            </div>
+            <div class="card-body">
+                {% plotly_app name="SimpleExample3" ratio=0.5 %}
+            </div>
+            <div class="card-footer small text-muted">Cantidad de Ordenes de Compra</div>
+        </div>
+    </div>
+    <div class="col-lg-6"></div>
+</div>
+</table>
+
+
+
+{%endblock%}

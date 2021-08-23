@@ -1,0 +1,383 @@
+{%extends 'base_dashboard.html'%}
+{% load humanize %}
+{% block extra_head %}
+<script type="text/javascript" src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script type="text/javascript" src="https://www.amcharts.com/lib/3/serial.js"></script>
+<script type="text/javascript" src="https://www.amcharts.com/lib/3/pie.js"></script>
+<script type="text/javascript" src="https://www.amcharts.com/lib/3/themes/none.js"></script>
+<script type="text/javascript" src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<meta name="mymeta" http-equiv="refresh" content={{TiempoRefrescar}} id="myMeta" />
+
+<style>
+	table, th, td {
+		border: 1px solid black;
+		text-align: left;
+		text-transform: capitalize;
+		font-weight: bold;
+		font-size: 0.875em;
+	}
+
+	tr:hover {
+		background-color: #f5f5f5;
+	}
+
+	.red {
+		background-color: red;
+		color: #ffffff;
+		text-align: right;
+	}
+
+	.darkred {
+		background-color: #ad0a07;
+		color: #ffffff;
+		text-align: right;
+	}
+
+	.yellow {
+		background-color: yellow;
+		text-align: right;
+	}
+
+	.orange {
+		background-color: orange;
+		text-align: right;
+	}
+
+	.green {
+		background-color: green;
+		text-align: right;
+	}
+
+	.number {
+		text-align: right;
+	}
+</style>
+{% endblock %}
+
+{%block content  %}
+<div class="card-body">
+	<div class="row">
+		<div class="col-auto mr-auto" style="width: 40%;">
+			<h1>{{message}}</h1>
+		</div>
+		<div class="col-auto mr-auto" style="width: 60%;">
+			<form method="POST" id="grafica1form">
+				{% csrf_token %}
+				{% include 'base_filter.html' with form=form divisiones=3 anchocolumna="col-lg-4"%}
+			</form>
+		</div>
+	</div>
+	<hr />
+	<div class="row">
+		<div class="col-auto mr-auto" style="width: 33%">
+			<!-- TABLA DE SKUS REPETIDOS -->
+			<table id="#" cellspacing="0">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>SKU</th>
+						<th>Repeticiones</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for CantSKU in CantSKU_List %}
+					<tr>
+						<td> {{ forloop.counter }}</td>
+						<td>{{CantSKU.sku}}</td>
+						<td>{{CantSKU.cantidad|intcomma}}</td>
+					</tr>
+					{% endfor%}
+					<tr>
+						<td colspan=3>
+							<a href="/RepLatestshipdatesku/">
+								Ver Reporte
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>	
+		<div class="col-auto mr-auto" style="width: 33%">
+			<!-- TABLA DE VENTAS DE MONTO MAYOR -->
+			<table id="#" cellspacing="0">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>PO Number</th>
+						<th>Purchase Locations</th>
+						<th>Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for MaxTotalSale in MaxTotalSale_list %}
+					<tr>
+						<td> {{forloop.counter }}</td>
+						<td>{{MaxTotalSale.po}}</td>
+						<td>{{MaxTotalSale.fulfillmentlocationname}}</td>
+						<td>{{MaxTotalSale.totalsales|floatformat:2|intcomma}}</td>
+					</tr>
+					{% endfor%}
+				</tbody>
+			</table>
+		</div>
+		<div class="col-auto mr-auto" style="width: 33%">
+			<!-- TABLA DE ORDENES CON 1 DIA DE DIFERENCIA -->
+			<table id="#" cellspacing="0">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>StateCode</th>
+						<th>Locaton</th>
+						<th>Orders Due Today</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for LsCantX1Dia in LsCantX1Dia_List %}
+					<tr>
+						<td> {{forloop.counter }}</td>
+						<td> {{LsCantX1Dia.statecode}} </td>
+						<td> {{LsCantX1Dia.fulfillmentlocationname}} </td>
+						<td> {{LsCantX1Dia.sumTotalOK|intcomma}} </td>
+					</tr>
+					{%endfor%}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<hr/>
+	<div class="row">
+		<div class="col-auto mr-auto" style="width: 100%">
+			<!-- TABLA DE CANTIDADES -->
+			<table id="#" width="100%" cellspacing="0">
+				<thead>
+					<tr>
+						<th>State Code</th>
+						<th>Locaton</th>
+						<th>0 Days</th>
+						<th>1 Days</th>
+						<th>2 Days</th>
+						<th>3 Days</th>
+						<th>4 Days</th>
+						<th>5 Days</th>
+						<th>6 Days</th>
+						<th>7 Days</th>
+						<th>8 Days</th>
+						<th>9 Days</th>
+						<th>10 Days</th>
+						<th>11+ Days</th>
+						<th>Latency</th>
+						<th>Late Order %</th>
+						<th>On Time%</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						{% for LsDiasxcantidad in LsDiasxcantidad_List %}
+						<td>{{LsDiasxcantidad.statecode}}  </td>
+						<td>{{LsDiasxcantidad.fulfillmentlocationname}}  </td>
+						<td class="green">{{LsDiasxcantidad.number_0|intcomma}}   </td>
+						<td class="{% if LsDiasxcantidad.latency < 1 %} orange
+							{% elif LsDiasxcantidad.latency == 1 %} orange
+							{% elif LsDiasxcantidad.latency >  1 %} yellow
+							{% endif %}">{{LsDiasxcantidad.number_1|intcomma}}
+						</td>
+						<td class="{% if LsDiasxcantidad.latency < 2 %} orange
+							{% elif LsDiasxcantidad.latency == 2  %} orange
+							{% elif LsDiasxcantidad.latency > 2 %} yellow
+							{% endif %}">{{LsDiasxcantidad.number_2|intcomma}}
+						</td>
+						<td class="{% if LsDiasxcantidad.latency < 3 %} orange
+							{% elif LsDiasxcantidad.latency == 3  %} orange
+							{% elif LsDiasxcantidad.latency > 3 %} yellow
+							{% endif %}">{{LsDiasxcantidad.number_3|intcomma}}
+						</td>
+						<td class="{% if LsDiasxcantidad.latency < 4 %} orange
+							{% elif LsDiasxcantidad.latency == 4  %} orange
+							{% elif LsDiasxcantidad.latency > 4 %} yellow
+							{% endif %}">{{LsDiasxcantidad.number_4|intcomma}}
+						</td>
+						<td class="{% if LsDiasxcantidad.latency < 5 %} red
+							{% elif LsDiasxcantidad.latency == 5  %} red
+							{% elif LsDiasxcantidad.latency > 5 %} yellow
+							{% endif %}">{{LsDiasxcantidad.number_5|intcomma}}
+						</td>
+						<td class="{% if LsDiasxcantidad.latency < 6 %} red
+							{% elif LsDiasxcantidad.latency == 6  %} red
+							{% elif LsDiasxcantidad.latency > 6 %} yellow
+							{% endif %}">{{LsDiasxcantidad.number_6|intcomma}}
+						</td>
+						<td class="{% if LsDiasxcantidad.latency < 7 %} red
+							{% elif LsDiasxcantidad.latency == 7  %} red
+							{% elif LsDiasxcantidad.latency > 7 %} yellow
+							{% endif %}">{{LsDiasxcantidad.number_7|intcomma}}
+						</td>
+						<td class="{% if LsDiasxcantidad.latency < 8 %} darkred
+							{% elif LsDiasxcantidad.latency == 8  %} darkred
+							{% elif LsDiasxcantidad.latency > 8 %} yellow
+							{% endif %}">{{LsDiasxcantidad.number_8|intcomma}}
+						</td>
+						<td class="{% if LsDiasxcantidad.latency < 9 %} darkred
+							{% elif LsDiasxcantidad.latency == 9  %} darkred
+							{% elif LsDiasxcantidad.latency > 9 %} yellow
+							{% endif %}">{{LsDiasxcantidad.number_9|intcomma}}
+						</td>
+						<td class="{% if LsDiasxcantidad.latency < 10 %} darkred
+							{% elif LsDiasxcantidad.latency == 10  %} darkred
+							{% elif LsDiasxcantidad.latency > 10 %} yellow
+							{% endif %}">{{LsDiasxcantidad.number_10|intcomma}}
+						</td>
+						<td class="{% if LsDiasxcantidad.latency < 11 %} darkred
+							{% elif LsDiasxcantidad.latency == 11  %} darkred
+							{% elif LsDiasxcantidad.latency > 11 %} yellow
+							{% endif %}">{{LsDiasxcantidad.number_11|intcomma}}
+						</td>
+						<td class="number">
+							{{LsDiasxcantidad.latency}}
+						</td>
+						<td class="number">
+							{{LsDiasxcantidad.pLate|floatformat:2|intcomma}}
+						</td>
+						<td class="number">
+							{{LsDiasxcantidad.pOK|floatformat:2|intcomma}}
+						</td>
+					</tr>
+					{% endfor %}
+					{% for TotLsDiasxcantidad in TotLsDiasxcantidad_List %}
+					<tr>
+						<td colspan="2">TOTAL</td>
+						<td class="number">{{TotLsDiasxcantidad.sum_number_0|intcomma }}</td>
+						<td class="number">{{TotLsDiasxcantidad.sum_number_1|intcomma }}</td>
+						<td class="number">{{TotLsDiasxcantidad.sum_number_2|intcomma }}</td>
+						<td class="number">{{TotLsDiasxcantidad.sum_number_3|intcomma }}</td>
+						<td class="number">{{TotLsDiasxcantidad.sum_number_4|intcomma }}</td>
+						<td class="number">{{TotLsDiasxcantidad.sum_number_5|intcomma }}</td>
+						<td class="number">{{TotLsDiasxcantidad.sum_number_6|intcomma }}</td>
+						<td class="number">{{TotLsDiasxcantidad.sum_number_7|intcomma }}</td>
+						<td class="number">{{TotLsDiasxcantidad.sum_number_8|intcomma }}</td>
+						<td class="number">{{TotLsDiasxcantidad.sum_number_9|intcomma }}</td>
+						<td class="number">{{TotLsDiasxcantidad.sum_number_10|intcomma }}</td>
+						<td class="number">{{TotLsDiasxcantidad.sum_number_11|intcomma }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<hr />
+	<div class="row">
+		<div class="col-auto mr-auto" style="width: 100%">
+			<!-- TABLA DE MONTOS -->
+			<table id="#" width="100%" cellspacing="0">
+				<thead>
+					<tr>
+						<th>State Code</th>
+						<th>Locaton</th>
+						<th>0 Days</th>
+						<th>1 Days</th>
+						<th>2 Days</th>
+						<th>3 Days</th>
+						<th>4 Days</th>
+						<th>5 Days</th>
+						<th>6 Days</th>
+						<th>7 Days</th>
+						<th>8 Days</th>
+						<th>9 Days</th>
+						<th>10 Days</th>
+						<th>11+ Days</th>
+						<th>Latency</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for LsDiasxmonto in LsDiasxmonto_List %}
+					<tr>
+						<td>{{LsDiasxmonto.statecode}}  </td>
+						<td>{{LsDiasxmonto.fulfillmentlocationname}}  </td>
+						<td class="green">{{LsDiasxmonto.number_0|floatformat:2|intcomma}}   </td>
+						<td class="{% if LsDiasxmonto.latency < 1 %} orange
+							{% elif LsDiasxmonto.latency == 1 %} orange
+							{% elif LsDiasxmonto.latency >  1 %} yellow
+							{% endif %}">{{LsDiasxmonto.number_1|floatformat:2|intcomma}}
+						</td>
+						<td class="{% if LsDiasxmonto.latency < 2 %} orange
+							{% elif LsDiasxmonto.latency == 2  %} orange
+							{% elif LsDiasxmonto.latency > 2 %} yellow
+							{% endif %}">{{LsDiasxmonto.number_2|floatformat:2|intcomma}}
+						</td>
+						<td class="{% if LsDiasxmonto.latency < 3 %} orange
+							{% elif LsDiasxmonto.latency == 3  %} orange
+							{% elif LsDiasxmonto.latency > 3 %} yellow
+							{% endif %}">{{LsDiasxmonto.number_3|floatformat:2|intcomma}}
+						</td>
+						<td class="{% if LsDiasxmonto.latency < 4 %} orange
+							{% elif LsDiasxmonto.latency == 4  %} orange
+							{% elif LsDiasxmonto.latency > 4 %} yellow
+							{% endif %}">{{LsDiasxmonto.number_4|floatformat:2|intcomma}}
+						</td>
+						<td class="{% if LsDiasxmonto.latency < 5 %} red
+							{% elif LsDiasxmonto.latency == 5  %} red
+							{% elif LsDiasxmonto.latency > 5 %} yellow
+							{% endif %}">{{LsDiasxmonto.number_5|floatformat:2|intcomma}}
+						</td>
+						<td class="{% if LsDiasxmonto.latency < 6 %} red
+							{% elif LsDiasxmonto.latency == 6  %} red
+							{% elif LsDiasxmonto.latency > 6 %} yellow
+							{% endif %}">{{LsDiasxmonto.number_6|floatformat:2|intcomma}}
+						</td>
+						<td class="{% if LsDiasxmonto.latency < 7 %} red
+							{% elif LsDiasxmonto.latency == 7  %} red
+							{% elif LsDiasxmonto.latency > 7 %} yellow
+							{% endif %}">{{LsDiasxmonto.number_7|floatformat:2|intcomma}}
+						</td>
+						<td class="{% if LsDiasxmonto.latency < 8 %} darkred
+							{% elif LsDiasxmonto.latency == 8  %} darkred
+							{% elif LsDiasxmonto.latency > 8 %} yellow
+							{% endif %}">{{LsDiasxmonto.number_8|floatformat:2|intcomma}}
+						</td>
+						<td class="{% if LsDiasxmonto.latency < 9 %} darkred
+							{% elif LsDiasxmonto.latency == 9  %} darkred
+							{% elif LsDiasxmonto.latency > 9 %} yellow
+							{% endif %}">{{LsDiasxmonto.number_9|floatformat:2|intcomma}}
+						</td>
+						<td class="{% if LsDiasxmonto.latency < 10 %} darkred
+							{% elif LsDiasxmonto.latency == 10  %} darkred
+							{% elif LsDiasxmonto.latency > 10 %} yellow
+							{% endif %}">{{LsDiasxmonto.number_10|floatformat:2|intcomma}}
+						</td>
+						<td class="{% if LsDiasxmonto.latency < 11 %} darkred
+							{% elif LsDiasxmonto.latency == 11  %} darkred
+							{% elif LsDiasxmonto.latency > 11 %} yellow
+							{% endif %}">{{LsDiasxmonto.number_11|floatformat:2|intcomma}}
+						</td>
+						<td class="number">
+							{{LsDiasxmonto.latency}}
+						</td>
+					</tr>
+					{% endfor %}
+					{% for TotLsDiasxmonto in TotLsDiasxmonto_List %}
+					<tr>
+						<td colspan="2">TOTAL</td>
+						<td class="number">{{TotLsDiasxmonto.sum_number_0|floatformat:2|intcomma }}</td>
+						<td class="number">{{TotLsDiasxmonto.sum_number_1|floatformat:2|intcomma }}</td>
+						<td class="number">{{TotLsDiasxmonto.sum_number_2|floatformat:2|intcomma }}</td>
+						<td class="number">{{TotLsDiasxmonto.sum_number_3|floatformat:2|intcomma }}</td>
+						<td class="number">{{TotLsDiasxmonto.sum_number_4|floatformat:2|intcomma }}</td>
+						<td class="number">{{TotLsDiasxmonto.sum_number_5|floatformat:2|intcomma }}</td>
+						<td class="number">{{TotLsDiasxmonto.sum_number_6|floatformat:2|intcomma }}</td>
+						<td class="number">{{TotLsDiasxmonto.sum_number_7|floatformat:2|intcomma }}</td>
+						<td class="number">{{TotLsDiasxmonto.sum_number_8|floatformat:2|intcomma }}</td>
+						<td class="number">{{TotLsDiasxmonto.sum_number_9|floatformat:2|intcomma }}</td>
+						<td class="number">{{TotLsDiasxmonto.sum_number_10|floatformat:2|intcomma}}</td>
+						<td class="number">{{TotLsDiasxmonto.sum_number_11|floatformat:2|intcomma}}</td>
+					</tr>
+					{% endfor %}
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	{% endblock %}

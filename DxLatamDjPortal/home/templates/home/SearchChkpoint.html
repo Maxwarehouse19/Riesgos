@@ -1,0 +1,128 @@
+{%extends 'base.html'%}
+{%load static%}
+{% block content %}
+<div id="layoutSidenav">
+	<main>     		
+		<div class="container-fluid">
+			{% if perms.home.add_alechkpoint %}
+				<a href="/addChkPoint">  <button class="btn btn-primary">Crear punto de validaci&oacute;n nuevo</button></a>
+				<hr />
+			{% endif %}
+			{% if ChkPoint_list %}			
+			<div class="table-responsive">
+				<table class="table table-bordered" id="#" width="100%" cellspacing="0">
+					<thead>
+						<tr>							
+							<th>Punto de Validaci&oacute;n </th> 
+							<th>Fecha Vigencia</th> 
+							<th>Hora Inicial  </th> 
+							<th>Hora Final  </th> 
+							<th>Temporalidad</th> 
+							<th>Periodicidad</th>
+							<th>Mensaje asociado</th>		
+							<th>Criterio inferior</th>		
+							<th>Criterio superior</th>										
+							<th>Algoritmo de an&aacute;lisis</th>	
+							{% if perms.home.change_alechkpoint %}
+								<th>Editar</th>		
+							{% endif %}
+							{% if perms.home.delete_alechkpoint %}
+								<th>Eliminar</th>		
+							{% endif %}
+						</tr>
+					</thead>						
+					{% for ChkPoint in ChkPoint_list %}
+					<tbody>
+						<tr>
+							<td>{{ChkPoint.descripicion}}  	</td>
+
+							<td>								
+								{{ChkPoint.fechavigencia|stringformat:"d"|slice:"6:8"}}/{{ChkPoint.fechavigencia|stringformat:"d"|slice:"4:6"}}/{{ChkPoint.fechavigencia|stringformat:"d"|slice:"0:4"}}
+							</td>
+							<td> 
+								{% if ChkPoint.horainicial < 10 %} 
+									00:0{{ChkPoint.horainicial}}     
+								{% elif ChkPoint.horainicial < 100 %} 
+									00:{{ChkPoint.horainicial}}     
+								{% elif ChkPoint.horainicial < 1000 %} 
+									0{{ChkPoint.horainicial|stringformat:"d"|slice:"0:1"}}:{{ChkPoint.horainicial|stringformat:"d"|slice:"1:3"}}    
+								{% else %}
+									{{ChkPoint.horainicial|stringformat:"d"|slice:"0:2"}}:{{ChkPoint.horainicial|stringformat:"d"|slice:"2:4"}}    
+								{% endif %}
+							</td> 
+							<td>
+								{% if ChkPoint.horafinal < 10 %} 
+									00:0{{ChkPoint.horafinal}}     
+								{% elif ChkPoint.horafinal < 100 %} 
+									00:{{ChkPoint.horafinal}}     
+								{% elif ChkPoint.horafinal < 1000 %} 
+									0{{ChkPoint.horafinal|stringformat:"d"|slice:"0:1"}}:{{ChkPoint.horafinal|stringformat:"d"|slice:"1:3"}}    
+								{% else %}
+									{{ChkPoint.horafinal|stringformat:"d"|slice:"0:2"}}:{{ChkPoint.horafinal|stringformat:"d"|slice:"2:4"}}    
+								{% endif %}
+							</td>     
+							<td> {{ChkPoint.unirevision}} 		</td>     
+							<td> {{ChkPoint.periodicidad}} 		</td>     								
+							<td> {{ChkPoint.idmensaje}} 		</td>     
+							<td> {{ChkPoint.mensajeinf}} 		</td>     
+							<td> {{ChkPoint.mensajsup}} 		</td>     								
+							<td> {{ChkPoint.sp_validacion}} 	</td>         
+
+							{% if perms.home.change_alechkpoint %}
+								<td>  <a href="/editChkPoint/{{ ChkPoint.idregistro }}">Editar</a> </td>	
+							{% endif %}
+							{% if perms.home.delete_alechkpoint %}
+								<td>
+									<a href="/deleteChkPoint/{{ ChkPoint.idregistro }}" 
+									onClick="return confirm('¿Seguro que quieres borrar a {{ChkPoint.idchkpoint}} - {{ChkPoint.descripcion}}?');">
+										Borrar
+									</a>			
+								</td>
+							{% endif %}
+						</tr>
+					</tbody>
+					{% endfor %}	  
+				</table>	  
+			</div>			
+		   {% else %}
+			  <p>No hay puntos de validación.</p> 
+		   {% endif %}
+			<div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">			
+				{% if filter2.has_other_pages %}
+				  <ul class="pagination">
+					{% if filter2.has_previous %}
+					  <li class="paginate_button page-item previous enabeled" id="dataTable_previous"><a href="?page=1" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">First</a></li>
+					  <li class="paginate_button page-item previous enabeled" id="dataTable_previous"><a href="?page={{ filter2.previous_page_number }}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+					{% else %}
+			  		  <li class="paginate_button page-item previous inactive" id="dataTable_previous"><a href="?page=1" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">First</a></li>			
+					  <li class="paginate_button page-item previous inactive" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+					{% endif %}
+				
+					   <li class="paginate_button page-item active">
+						   <a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">
+								Page {{ filter2.number }} of {{ filter2.paginator.num_pages }}.
+						   </a>
+					   </li>
+				
+					{% if filter2.has_next %}
+					  <li class="paginate_button page-item next enabled" id="dataTable_next">
+						<a href="?page={{ filter2.next_page_number }}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">Next</a>
+					  </li>
+					  <li class="paginate_button page-item next enabled" id="dataTable_next">
+						<a href="?page={{ filter2.paginator.num_pages }}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">Last</a>
+					  </li>
+					{% else %}
+					  <li class="paginate_button page-item next inactive" id="dataTable_next">
+						<a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">Next</a>
+					  </li>
+					  <li class="paginate_button page-item next inactive" id="dataTable_next">
+						<a href="?page={{ filter2.paginator.num_pages }}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">Last</a>
+					  </li>
+					{% endif %}
+				  </ul>
+				{% endif %}
+			</div>
+		</div>		
+	</main>
+</div>
+{% endblock %}

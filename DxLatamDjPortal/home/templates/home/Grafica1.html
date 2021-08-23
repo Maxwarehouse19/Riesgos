@@ -1,0 +1,577 @@
+{%extends 'base_dashboard.html'%}
+{% block extra_head %}
+	<meta name="mymeta" http-equiv="refresh" content={{TiempoRefrescar}} id="myMeta"/>
+	<!--script>
+        var myMeta = document.getElementsByTagName("meta")[0];
+        document.write("When loaded, meta content is "+myMeta.content+"<br/>");
+        myMeta.content="10";
+        document.write("After modification, meta content is "+myMeta.content+"<br/>");
+    </script--> 	
+{% endblock %}
+{%block content  %}
+{% load widget_tweaks %}
+			<div class="card-body">				
+				<form method="POST" id="grafica1form">    			 
+					<div class="row">
+
+						{% csrf_token %}
+
+						{{ form.non_field_errors }}
+
+						{% for hidden_field in form.hidden_fields %}
+							{{ hidden_field.errors }}
+							{{ hidden_field }}
+						{% endfor %}
+					</div>
+					<div class="row">
+							<div class="form-group col-auto mr-auto">																
+								<table><tr>
+									<td><h5>{{ form.canalytiposorden.label_tag }}</h5></td>
+									<td>&nbsp; </td>
+									<td>{% render_field form.canalytiposorden class="form-control" %}</td>
+								</tr></table>
+							</div>											
+							<div class="form-group col-auto mr-auto">								
+								<table><tr>
+									<td><h5>{{ form.fecha.label_tag }}</h5></td>
+									<td>&nbsp; </td>
+									<td>{% render_field form.fecha class="form-control" %}</td>
+								</tr></table>
+							</div>											
+							<div class="form-group col-auto mr-auto">								
+								<table><tr>
+									<td><h5>{{ form.frmTiempoRefrescar.label_tag }}</h5></td>
+									<td>&nbsp; </td>
+									<td>{% render_field form.frmTiempoRefrescar class="form-control" %}</td>
+								</tr></table>
+							</div>	
+							<div class="form-group col-auto mr-auto">																
+								<button type="submit" class="btn btn-primary" name="action" value="Consultar" >Consultar</button>
+							</div>
+					</div>
+				</form>		
+				<hr/>
+				<div class="row">
+						<div class="col-auto mr-auto" id="chartdiv3" style="width: 100%; height: 250px; background-color: #FFFFFF;" ></div>
+				</div>
+				<hr/>
+				<div class="row justify-content-center">					
+						<h5> Detalle para {{PuntoVenta}} del d&iacute;a {{fechaDet}} </h5>					
+				</div>
+				<hr/>				
+				<div class="row justify-content-start">						
+					<div  class="col-md-auto" id="chartdiv" style="width: 65%; height: 450px; background-color: #FFFFFF;" ></div>				
+					<div class="col-auto mr-auto" id="chartdiv2" style="width: 35%; height: 450px; background-color: #FFFFFF;" ></div>
+				</div>
+				<div class="row justify-content-start">
+					<div  class="col-md-auto" id="chartdiv4"  style="width: 50%; height: 400px; background-color: #FFFFFF;" ></div>									
+					<div  class="col-md-auto" id="chartdiv5" style="width: 50%; height: 400px; background-color: #FFFFFF;" ></div>				 				
+				</div>
+				<div class="row">
+						<div class="col-auto mr-auto" id="chartdiv6" style="width: 100%; height: 250px; background-color: #FFFFFF;" ></div>
+				</div>
+			</div>
+	
+	
+	<script type="text/javascript" src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+	<script type="text/javascript" src="https://www.amcharts.com/lib/3/serial.js"></script>	
+	<script type="text/javascript" src="https://www.amcharts.com/lib/3/pie.js"></script>
+	<script type="text/javascript" src="https://www.amcharts.com/lib/3/themes/none.js"></script>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+	<script>
+			AmCharts.makeChart("chartdiv",
+				{
+					"type": "serial",
+					"fontFamily": "'Poppins', sans-serif",
+					"paddingLeft" : 0,
+					"paddingRight": 0,
+					"categoryField": "date",
+					"dataDateFormat": "YYYY-MM-DD HH",
+					"categoryAxis": {
+						"minPeriod": "hh",
+						"parseDates": true
+					},
+					"chartCursor": {
+						"enabled": true,
+						"categoryBalloonDateFormat": "JJ:NN"
+					},
+					"chartScrollbar": {
+						"enabled": true
+					},
+					"trendLines": [],
+					"graphs": [
+						{
+							"bullet": "triangleRight",
+							"gapPeriod": 5,
+							"id": "Prediccion",
+							"lineColor": "#6BC928",
+							"title": "Cantidad Estimada",
+							"valueField": "Prediccion"
+						},
+						{
+							"bullet": "square",
+							"fillAlphas": 0.10,
+							"fontSize": 0,
+							"id": "REAL",
+							"lineColor": "#032cfc",
+							"title": "Cantidad Real",
+							"valueField": "REAL"
+						},
+						{
+							"bullet": "triangleRight",
+							"id": "ToleranciaInferior",
+							"lineColor": "#FFD900",
+							"title": "Rango Inferior",
+							"valueField": "ToleranciaInferior"
+						},
+						{
+							"bullet": "triangleRight",
+							"gapPeriod": 0,
+							"id": "ToleranciaSuperior",
+							"lineColor": "#ED1334",
+							"title": "Rango Superior",
+							"valueField": "ToleranciaSuperior"
+						},
+						{
+							"bullet": "round",
+							"bulletSize": 14,
+							"id": "Maximo",
+							"title": "Maximo",
+							"valueField": "Maximo",
+							"bulletColor": "#FF0000",
+
+							"type": "column",							
+							//"fillColors": "#FF0000",
+							"lineColor": "#FF0000",
+							//"lineAlpha": 0,
+							"columnWidth": 0.01,							
+							"dashLength": 1,
+							"fillAlphas": 0,
+							"showBalloon": false,
+							"visibleInLegend": false
+						},
+						{
+							"bullet": "round",
+							"bulletSize": 14,
+							"id": "Minimo",
+							//"lineAlpha": 0,
+							"title": "Minimo",
+							"valueField": "Minimo",
+							"bulletColor": "#FCFF00",
+							
+							"type": "column",							
+							//"fillColors": "#FCFF00",
+							"lineColor": "#FCFF00",
+							//"lineAlpha": 0,
+							"columnWidth": 0.01,							
+							"dashLength": 1,							
+							"fillAlphas": 0,
+							"showBalloon": false,
+							"visibleInLegend": false
+						}
+
+					],
+					"guides": [],
+					"valueAxes": [
+						{
+							"id": "ValueAxis-1",
+							"title": "Cantidad Sales Orders",
+							//"titleFontSize": 17
+						}
+					],
+					"allLabels": [],
+					"balloon": {},
+					"legend": {
+						"enabled": true,
+						"useGraphSettings": true,
+						"position": "bottom",
+						"align": "absolute",
+						"valueWidth": 0,
+						"spacing": 0,
+					},
+					"titles": [
+						{
+							"id": "Title-1",
+							//"size": 15,
+							"text": "Cantidad Real vs Estimacion por Hora para {{PuntoVenta}}"
+						}
+					],
+					"dataProvider":{{ data|safe }}
+				}
+			);
+	</script>
+	<script>		
+				AmCharts.makeChart("chartdiv2",
+				{
+					"colors" : ["#ED1334", "#EFF218", "#6BC928"],
+					"type": "pie",
+					"fontFamily": "'Poppins', sans-serif",
+					"angle": 12,
+					"balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+					"depth3D": 5,
+					"innerRadius": "40%",
+					"titleField": "category",
+					"valueField": "cantidad",
+					"marginBottom": 0,
+					"marginTop": 0,
+					"marginLeft":0,
+					"marginRight":0,
+					"paddingTop":0,
+
+					"allLabels": [],
+					"balloon": {},
+					"legend": {
+						"enabled": false,
+						"align": "center",
+						"markerType": "circle",
+						"position": "left",						
+						"valueWidth": 0,
+						"spacing": 0,
+						"marginTop": 0,						
+					},
+					"titles": [
+						{
+							"id": "Title-1",							
+							"text": "Distribucion de alertas para {{PuntoVenta}}",
+							"marginBottom":0,
+						}
+					],
+					"dataProvider":{{ data2|safe }}					
+				}
+			);
+	</script>
+	<script>
+				AmCharts.makeChart("chartdiv3",
+				{
+					"type": "serial",
+					"fontFamily": "'Poppins', sans-serif",
+					"paddingLeft" : 0,
+					"paddingRight": 0,
+					"categoryField": "category",
+					"startDuration": 1,
+					"categoryAxis": {
+						"gridPosition": "start",
+						//"fontSize": 15,
+						"boldLabels": true,
+						//"autoRotateAngle": -90,
+					},
+
+					
+					//"autoMarginOffset": 40,
+					//"marginRight": 60,
+					//"marginTop": 60,
+					//"fontSize": 13,
+					"theme": "default",					
+
+					"trendLines": [],
+					"graphs": [
+						{
+							"balloonText": "[[title]] of [[category]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-1",
+							"title": "MAXIMO",
+							"type": "column",
+							"valueField": "MAXIMO",
+							"fillColors": "#ed1334",
+							"lineColor": "#ed1334",
+							"labelText" :"[[value]]",
+							//"fontSize": 20,
+						},
+						{
+							"balloonText": "[[title]] of [[category]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-2",
+							"title": "MINIMO",
+							"type": "column",
+							"valueField": "MINIMO",
+							"fillColors": "#eff218",
+							"lineColor": "#eff218",
+							"labelText" :"[[value]]",
+							//"fontSize": 20,
+						},
+						{
+							"balloonText": "[[title]] of [[category]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-3",
+							"title": "OK",
+							"type": "column",
+							"valueField": "OK",
+							"fillColors": "#6bc928",
+							"lineColor": "#6bc928",
+		                    "labelText" :"[[value]]",		
+							"hidden": true,
+							//"fontSize": 20,
+						}
+					],
+					"guides": [],
+					"valueAxes": [
+						{
+							"id": "ValueAxis-1",
+							//"stackType": "100%",
+							"title": "Cantidad Sales Orders",
+							//"titleFontSize": 17	
+						}
+					],
+					"allLabels": [],
+					"balloon": {},
+					"legend": {
+						"enabled": true,
+						"useGraphSettings": true,
+						"valueWidth": 0,
+						"position": "left",
+						"align": "absolute",
+						"spacing": 0,
+					},
+					"titles": [{
+							"id": "Title-1",					
+							"text": "Estado de Cantidad de Sales Orders por Punto de Venta al {{fechaDet}}"
+					}],
+					"dataProvider":{{ data3|safe }}					
+				}
+			);
+	</script>
+	<script>
+			AmCharts.makeChart("chartdiv4",
+				{
+					"type": "serial",
+					"fontFamily": "'Poppins', sans-serif",
+					"categoryField": "date",
+					"dataDateFormat": "YYYY-MM-DD HH",
+					"startDuration": 1,
+					"theme": "none",		
+					"categoryAxis": {
+						"gridPosition": "start",
+						"minPeriod": "hh",
+						"parseDates": true
+					},					
+					"chartCursor": {
+						"enabled": true,
+						"categoryBalloonDateFormat": "JJ:NN"
+					},
+					"chartScrollbar": {
+						"enabled": true
+					},
+					"trendLines": [],
+					"graphs": [
+						{
+							"fillAlphas": 1,
+							"id": "AmGraph-1",
+							"title": "Variacion",
+							"type": "column",
+							"valueField": "Variacion",	
+							"fillColors": "#032cfc",
+							"lineColor": "#032cfc",
+							"fillAlphas": 0.21,
+						},
+						{
+							"bullet": "triangleRight",
+							"id": "AmGraph-3",
+							"title": "Tolerancia Inferior",
+							"valueField": "varToleranciaInferior",		
+							"lineColor": "#EFF218",
+						},
+						{
+							"bullet": "triangleRight",
+							"id": "AmGraph-4",
+							"title": "rTolerancia Superior",
+							"valueField": "varToleranciaSuperior",
+							"lineColor": "#ED1334",
+							//"lineThickness": 2,
+							//"bulletSize": 11,							
+						}
+					],
+					"guides": [],
+					"valueAxes": [
+						{
+							"id": "ValueAxis-1",
+							"title": "Variacion en Cantidad"
+						}
+					],
+					"allLabels": [],
+					"balloon": {},
+					"titles": [
+						{
+							"id": "Title-1",
+					//		"size": 15,
+							"text": "Variacion vs Tolerancia por Hora para {{PuntoVenta}}"
+						}
+					],
+					"legend": {
+						"enabled": true,
+						"useGraphSettings": true,
+						"valueWidth": 0,
+						"position": "bottom",
+						"align": "absolute",
+						"spacing": 0,
+					},
+					"dataProvider": {{ data4|safe }}
+				}
+			);
+	</script>	
+	<script>
+			AmCharts.makeChart("chartdiv5",
+				{
+					"type": "serial",
+					"fontFamily": "'Poppins', sans-serif",
+					"categoryField": "date",
+					"dataDateFormat": "YYYY-MM-DD HH",
+					"startDuration": 1,
+					"theme": "none",		
+					"categoryAxis": {
+						"gridPosition": "start",
+						"minPeriod": "hh",
+						"parseDates": true
+					},					
+					"chartCursor": {
+						"enabled": true,
+						"categoryBalloonDateFormat": "JJ:NN"
+					},
+					"chartScrollbar": {
+						"enabled": true
+					},
+					"trendLines": [],
+					"graphs": [
+						{	
+							"id": "AmGraph-1",
+							"title": "Diferencia",
+							"type": "column",
+							"valueField": "Diferencia",	
+							"fillColors": "#032cfc",
+							"lineColor": "#032cfc",
+							"fillAlphas": 0.21,													
+						},
+						{
+							"bullet": "triangleRight",
+							"id": "AmGraph-3",
+							"title": "Tolerancia Inferior",
+							"valueField": "DifMaxInf",		
+							"lineColor": "#ED1334",
+						},
+						{
+							"bullet": "triangleRight",
+							"id": "AmGraph-4",
+							"title": "Tolerancia Superior",
+							"valueField": "DifMaxSup",
+							"lineColor": "#EFF218",
+							//"lineThickness": 2,
+							//"bulletSize": 11,							
+						}
+					],
+					"guides": [],
+					"valueAxes": [
+						{
+							"id": "ValueAxis-1",
+							"title": "Diferencia en Cantidad"
+						}
+					],
+					"allLabels": [],
+					"balloon": {},
+					"titles": [
+						{
+							"id": "Title-1",
+					//		"size": 15,
+							"text": "Diferencia vs Tolerancia por Hora para {{PuntoVenta}}"
+						}
+					],
+					"legend": {
+						"enabled": true,
+						"useGraphSettings": true,
+						"valueWidth": 0,
+						"position": "bottom",						
+						"spacing": 0,
+						"labelWidth": 0,
+						"marginLeft": 0,
+						"marginRight": 0,
+						"valueAlign": "left",
+						"left": 0,
+					},
+					"dataProvider": {{ data5|safe }}
+				}
+			);
+	</script>
+	<script>
+				AmCharts.makeChart("chartdiv6",
+				{
+					"type": "serial",
+					"fontFamily": "'Poppins', sans-serif",
+					"paddingLeft" : 0,
+					"paddingRight": 0,
+					"categoryField": "DiaMes",
+					"startDuration": 1,
+					"categoryAxis": {
+						"gridPosition": "start",						
+						"boldLabels": true,		
+						"autoRotateAngle": 90,
+						"autoRotateCount": 0,
+						"labelFrequency": 1,
+						"gridCount": 1,
+					},
+					"theme": "default",					
+					"trendLines": [],
+					"graphs": [
+						{
+							"balloonText": "[[title]] of [[category]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-1",
+							"title": "MAXIMO",
+							"type": "column",
+							"valueField": "MAXIMO",
+							"fillColors": "#ed1334",
+							"lineColor": "#ed1334",
+							"labelText" :"[[value]]",
+							//"fontSize": 20,
+						},
+						{
+							"balloonText": "[[title]] of [[category]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-2",
+							"title": "MINIMO",
+							"type": "column",
+							"valueField": "MINIMO",
+							"fillColors": "#eff218",
+							"lineColor": "#eff218",
+							"labelText" :"[[value]]",
+							//"fontSize": 20,
+						},
+						{
+							"balloonText": "[[title]] of [[category]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-3",
+							"title": "OK",
+							"type": "column",
+							"valueField": "OK",
+							"fillColors": "#6bc928",
+							"lineColor": "#6bc928",
+		                    "labelText" :"[[value]]",		
+							"hidden": true,
+							//"fontSize": 20,
+						}
+					],
+					"guides": [],
+					"valueAxes": [
+						{
+							"id": "ValueAxis-1",							
+							"title": "Cantidad Sales Orders",													
+						}
+					],
+					"allLabels": [],
+					"balloon": {},
+					"legend": {
+						"enabled": true,
+						"useGraphSettings": true,
+						"valueWidth": 0,
+						"position": "left",
+						"align": "absolute",
+						"spacing": 0,
+					},
+					"titles": [{
+							"id": "Title-1",					
+							"text": "Estado de Cantidad de Sales Orders en el mes para {{PuntoVenta}}"
+					}],
+					"dataProvider":{{ data6|safe }}					
+				}
+			);
+	</script>
+{% endblock %}

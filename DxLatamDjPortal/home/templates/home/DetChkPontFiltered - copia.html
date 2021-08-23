@@ -1,0 +1,15 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block content%}
+<div id="layoutSidenav">
+	<main>     		
+		<form action="" method="post">
+            {% csrf_token %}
+            {{ aform.as_p }}
+            <input type="submit" name="{{aform.prefix}}" value="Submit" />
+            {{ bform.as_p }}
+            <input type="submit" name="{{bform.prefix}}" value="Submit" />
+        </form>
+	</main>
+</div>
+{% endblock %}

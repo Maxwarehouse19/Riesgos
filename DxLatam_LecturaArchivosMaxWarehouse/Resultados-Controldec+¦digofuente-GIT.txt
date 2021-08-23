@@ -1,0 +1,25 @@
+﻿Abriendo los repositorios:
+C:\Users\Gabriela Reynoso\OneDrive\Documents\2021\Trabajo\DxLatam\Gestión y Monitoreo Automatizado de Riesgos\Desarrollo\DxLatam_LecturaArchivosMaxWarehouse
+Se creó la confirmación 06ebf46b localmente en el repositorio C:\Users\Gabriela Reynoso\OneDrive\Documents\2021\Trabajo\DxLatam\Gestión y Monitoreo Automatizado de Riesgos\Desarrollo\DxLatam_LecturaArchivosMaxWarehouse
+Enviando cambios de master
+Warning: Pulling without specifying how to reconcile divergent branches is
+discouraged. You can squelch this message by running one of the following
+commands sometime before your next pull:
+  git config pull.rebase false  # merge (the default strategy)
+  git config pull.rebase true   # rebase
+  git config pull.ff only       # fast-forward only
+You can replace "git config" with "git config --global" to set a default
+preference for all repositories. You can also pass --rebase, --no-rebase,
+or --ff-only on the command line to override the configured default per
+invocation.
+POST git-upload-pack (154 bytes)
+From https://github.com/greynosoDxLatam/DxLatam_LecturaArchivosMaxWarehouse
+ = [up to date]      master     -> origin/master
+06ebf46 Vesión actualAgregar archivos de proyecto.
+virtual f09888099587d6da927c7f70b4b7c03970f7118e
+Error: CONFLICT (add/add): Merge conflict in LecturaSALEORDERS.dtsx
+Auto-merging LecturaSALEORDERS.dtsx
+CONFLICT (add/add): Merge conflict in DxLatam_LecturaArchivosMaxWarehouse.dtproj
+Auto-merging DxLatam_LecturaArchivosMaxWarehouse.dtproj
+Automatic merge failed; fix conflicts and then commit the result.
+

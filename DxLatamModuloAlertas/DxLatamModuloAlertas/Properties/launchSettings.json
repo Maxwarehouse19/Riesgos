@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DxLatamModuloAlertas": {
+      "commandName": "Project",
+      "commandLineArgs": "\"..\\\\..\\\\SRC\\\\SETUP.INI\""
+    }
+  }
+}

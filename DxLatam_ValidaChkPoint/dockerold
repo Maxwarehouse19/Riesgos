@@ -1,0 +1,35 @@
+FROM mcr.microsoft.com/dotnet/aspnet:5.0
+COPY bin/Release/net5.0/ App/
+COPY src/SETUPPRODUCTION.INI App/
+WORKDIR /App
+ENTRYPOINT ["dotnet", "DxLatam_ValidaChkPoint.dll","SETUPPRODUCTION.INI"]
+
+
+
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
+COPY src/SETUPPRODUCTION.INI app/
+WORKDIR /app
+
+FROM  mcr.microsoft.com/dotnet/sdk:5.0 as build
+WORKDIR /src
+COPY ["DxLatam_ValidaChkPoint.csproj","./"]
+RUN dotnet restore "DxLatam_ValidaChkPoint.csproj"
+COPY . .
+WORKDIR "/src/."
+RUN dotnet build "DxLatam_ValidaChkPoint.csproj" -c Release -o /app/build
+
+FROM build as publish
+RUN dotnet build "DxLatam_ValidaChkPoint.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+#ENTRYPOINT ["dotnet", "DxLatam_ValidaChkPoint.dll","SETUPPRODUCTION.INI"]
+
+
+
+
+#COPY bin/Release/net5.0/ App/
+#COPY src/SETUPPRODUCTION.INI App/
+#WORKDIR /App
+#ENTRYPOINT ["dotnet", "DxLatam_ValidaChkPoint.dll","SETUPPRODUCTION.INI"]

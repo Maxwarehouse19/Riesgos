@@ -1,0 +1,2246 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/9/2021 4:27:05 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-IS3EEE0"
+  DTS:CreatorName="DESKTOP-IS3EEE0\Gabriela Reynoso"
+  DTS:DTSID="{10D6AB3A-A0D2-4402-9504-D194A21F313B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.152"
+  DTS:LocaleID="4106"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="72"
+  DTS:VersionGUID="{64AC0D02-2068-4241-B7E4-8EC547DBD27C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Conexión a MaxWarehouse]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{DAB583C3-1F25-422E-B5E1-2EAFF84DD0EB}"
+      DTS:ObjectName="Conexión a MaxWarehouse">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-IS3EEE0\SQLEXPRESS;Initial Catalog=MaxWarehouse;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SALESORDERS]"
+      DTS:CreationName="FLATFILE"
+      DTS:Description="Archivo SALEORDERS"
+      DTS:DTSID="{34E3BD94-7FD7-4722-A95C-ED39CB19C89E}"
+      DTS:ObjectName="SALESORDERS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="4106"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x0022_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\Gabriela Reynoso\OneDrive\Documents\2021\Trabajo\DxLatam\Gestión y Monitoreo Automatizado de Riesgos\Recursos\FTP\SALEORDERS030121to033121.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="19"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Order Date"
+              DTS:DTSID="{88C932E9-A652-4AA2-8B8A-1B8504944A52}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="19"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Order Number"
+              DTS:DTSID="{47ACAFCF-6A90-44B2-8EA0-EE4F8D001555}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Buyer"
+              DTS:DTSID="{FF5FE0FB-CCFD-4683-B4EE-425D1BB6854D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="101"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="PhysicalLocationSummary"
+              DTS:DTSID="{57B4C580-4A8D-4D58-829F-C25F552A323B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="OutboundShipmentSummary"
+              DTS:DTSID="{28CFB7EA-70E7-4645-8BB1-A46C4F5A4371}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="14"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Package Type"
+              DTS:DTSID="{7DCBF232-8C69-4D83-A9FA-315EE64F4F9D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="46"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Fulfillment Source Channel"
+              DTS:DTSID="{190D581A-D702-4277-95F9-7DC4A37D330E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Shipment Container Name"
+              DTS:DTSID="{9CC56AA6-9212-4D63-8ECB-BC09E8C2A43F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="7"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Earliest Ship Date"
+              DTS:DTSID="{80BFE210-A1E2-482F-AC64-C5390DD5F56A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="18"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Latest Ship Date"
+              DTS:DTSID="{B431EF62-EAC0-41E4-B7C9-9F70FE6DE7A7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="133"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ShiptoStreet"
+              DTS:DTSID="{950E8085-BB27-4D2B-9EE1-0A849B931DCE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="18"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Estimated Delivery Date"
+              DTS:DTSID="{47A6C81B-8D20-48AE-9CB0-D4AA446CDDAE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="HaveShippingLabels"
+              DTS:DTSID="{7796B302-CFB1-4A97-911F-609069129A54}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Batch"
+              DTS:DTSID="{F41CCCFA-98D3-472E-9DE2-85099FC72148}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="PrintQueue"
+              DTS:DTSID="{7ED8C195-B26E-416A-80D7-F760ECEA0E06}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="9"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Status"
+              DTS:DTSID="{2F41AA82-E0D3-407D-B0A6-73C6A890C071}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Notes"
+              DTS:DTSID="{4AF41BBC-AA10-40ED-87B2-9737A3E9C655}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="11"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Hold Codes"
+              DTS:DTSID="{91DF0735-7D5E-456B-9EE8-2E8E4CC06CC5}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Special Handling"
+              DTS:DTSID="{1319B2C0-2AB5-4D5A-BA4F-72B04A09C915}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="14"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ERP Number"
+              DTS:DTSID="{7B045C0D-ACCE-45EC-86D1-5E80B8DED903}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="15"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Sales Channel"
+              DTS:DTSID="{01B0D8AC-AE27-495A-8175-A3F1808CACC0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="1185"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Items"
+              DTS:DTSID="{7FBAAB0F-AD11-4A35-BCC1-A96847962562}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="1187"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Sales Channel Items"
+              DTS:DTSID="{8C23EB3A-4A03-472F-A1A2-99D9C480B16F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="11"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ORM-D"
+              DTS:DTSID="{DB9FC2AA-FA96-47E6-8758-62A1889BEF4D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="10"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Harmonized Tariff"
+              DTS:DTSID="{35A600DD-4C84-44B5-9DE5-C8AC6C402CB2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="41"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ShippingServiceLevel"
+              DTS:DTSID="{A53169EB-7FE5-4562-A885-B01EFD16BBC2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="18"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="EarliestShipmentStatusDate"
+              DTS:DTSID="{B69CC696-02D4-40D5-B19B-4C6C3177B8E8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="389"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TrackingNumber"
+              DTS:DTSID="{EEBDB3D5-293D-4E1B-8F5E-1CC1A0F3B5A2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="62"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Customer"
+              DTS:DTSID="{011C04A6-235A-4DFB-BC07-2A8D9767FEE7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="138"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Fulfillment Ship Location"
+              DTS:DTSID="{A53258CC-708C-4953-A48F-52FEFE49B8FD}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="73"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="PO Number(s)"
+              DTS:DTSID="{FDEA7B4C-CE78-4183-83B7-AF2F91C541D8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="27"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="City"
+              DTS:DTSID="{FA0A7168-42C2-441C-8A4D-1F6058B6E475}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="12"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="State"
+              DTS:DTSID="{0B23ACAF-E189-4B18-B41E-4FC0DFEC5B47}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="13"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Country"
+              DTS:DTSID="{2979DC76-0660-44AF-9632-41757D0E8728}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="12"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Postal Code"
+              DTS:DTSID="{E282F746-04E6-4B4C-9BDC-34D04D376EA0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="4"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TotalWeight"
+              DTS:DTSID="{CC5924E5-E9A6-437D-B0E7-5746BE599D41}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="14"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Sales Order Type"
+              DTS:DTSID="{7023CBF5-D97C-4767-9770-5347DE2A377A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="16"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Adjustment"
+              DTS:DTSID="{CDD48A55-BDAA-40E0-B55C-859E5ECE824B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="4"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Net"
+              DTS:DTSID="{462D83BF-91FD-4770-9D99-ABE24CB1BFBB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="7"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Discount"
+              DTS:DTSID="{89E67321-BDC6-48DF-A390-C2766BA60C9A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="9"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Total"
+              DTS:DTSID="{42161441-BCC3-49D7-B09C-584E51BBF1F9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="3"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Currency"
+              DTS:DTSID="{7417C34F-42E5-49A8-8AF8-0397B08C0E2B}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\BORRAR TABLA SALEORDERS"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{5F954E27-92D7-4DFB-BBEA-9A398491633C}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="BORRAR TABLA SALEORDERS"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DAB583C3-1F25-422E-B5E1-2EAFF84DD0EB}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE SALEORDERS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Importar Archivo"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{E928ADD7-6C29-42AF-ABC2-3B8F24ABFEE2}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Importar Archivo"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Importar Archivo\Destino de OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="Destino de OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[SALEORDERS]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importar Archivo\Destino de OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Conexión a MaxWarehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[Conexión a MaxWarehouse]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Order Date]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="19"
+                      cachedName="Order Date"
+                      externalMetadataColumnId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Order Date]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Order Date]" />
+                    <inputColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Order Number]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="19"
+                      cachedName="Order Number"
+                      externalMetadataColumnId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Order Number]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Order Number]" />
+                    <inputColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Status]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="Status"
+                      externalMetadataColumnId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Status]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Status]" />
+                    <inputColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Sales Channel]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="Sales Channel"
+                      externalMetadataColumnId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Sales Channel]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Sales Channel]" />
+                    <inputColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Sales Channel Items]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1187"
+                      cachedName="Sales Channel Items"
+                      externalMetadataColumnId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Sales Channel Items]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Sales Channel Items]" />
+                    <inputColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Sales Order Type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="14"
+                      cachedName="Sales Order Type"
+                      externalMetadataColumnId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Sales Order Type]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Sales Order Type]" />
+                    <inputColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Net]"
+                      cachedDataType="r4"
+                      cachedName="Net"
+                      externalMetadataColumnId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Net]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Net]" />
+                    <inputColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Currency]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="Currency"
+                      externalMetadataColumnId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Currency]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Currency]" />
+                    <inputColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[City]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="27"
+                      cachedName="City"
+                      externalMetadataColumnId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[City]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[City]" />
+                    <inputColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[State]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="12"
+                      cachedName="State"
+                      externalMetadataColumnId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[State]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[State]" />
+                    <inputColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Country]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="13"
+                      cachedName="Country"
+                      externalMetadataColumnId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Country]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Country]" />
+                    <inputColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[ERP Number]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="14"
+                      cachedName="ERP Number"
+                      externalMetadataColumnId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ERP Number]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[ERP Number]" />
+                    <inputColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Discount]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="7"
+                      cachedName="Discount"
+                      externalMetadataColumnId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Discount]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Discount]" />
+                    <inputColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Total]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="Total"
+                      externalMetadataColumnId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Total]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Total]" />
+                    <inputColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Earliest Ship Date]"
+                      cachedDataType="date"
+                      cachedName="Earliest Ship Date"
+                      externalMetadataColumnId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Earliest Ship Date]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Earliest Ship Date]" />
+                    <inputColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Latest Ship Date]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="18"
+                      cachedName="Latest Ship Date"
+                      externalMetadataColumnId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Latest Ship Date]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Latest Ship Date]" />
+                    <inputColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Estimated Delivery Date]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="18"
+                      cachedName="Estimated Delivery Date"
+                      externalMetadataColumnId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Estimated Delivery Date]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Estimated Delivery Date]" />
+                    <inputColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[HaveShippingLabels]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="HaveShippingLabels"
+                      externalMetadataColumnId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[HaveShippingLabels]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[HaveShippingLabels]" />
+                    <inputColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[ORM-D]"
+                      cachedDataType="bool"
+                      cachedName="ORM-D"
+                      externalMetadataColumnId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ORM-D]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[ORM-D]" />
+                    <inputColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Postal Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="12"
+                      cachedName="Postal Code"
+                      externalMetadataColumnId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Postal Code]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Postal Code]" />
+                    <inputColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[TotalWeight]"
+                      cachedDataType="r4"
+                      cachedName="TotalWeight"
+                      externalMetadataColumnId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[TotalWeight]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[TotalWeight]" />
+                    <inputColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Adjustment]"
+                      cachedDataType="i1"
+                      cachedName="Adjustment"
+                      externalMetadataColumnId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Adjustment]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Adjustment]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Order Date]"
+                      codePage="1252"
+                      dataType="str"
+                      length="19"
+                      name="Order Date" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Order Number]"
+                      codePage="1252"
+                      dataType="str"
+                      length="19"
+                      name="Order Number" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Earliest Ship Date]"
+                      codePage="1252"
+                      dataType="str"
+                      length="19"
+                      name="Earliest Ship Date" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Latest Ship Date]"
+                      codePage="1252"
+                      dataType="str"
+                      length="19"
+                      name="Latest Ship Date" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Estimated Delivery Date]"
+                      codePage="1252"
+                      dataType="str"
+                      length="19"
+                      name="Estimated Delivery Date" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[HaveShippingLabels]"
+                      codePage="1252"
+                      dataType="text"
+                      name="HaveShippingLabels" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="Status" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ERP Number]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      name="ERP Number" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Sales Channel]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="Sales Channel" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ORM-D]"
+                      dataType="bool"
+                      name="ORM-D" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[City]"
+                      codePage="1252"
+                      dataType="str"
+                      length="27"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[State]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      name="State" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Country]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Postal Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="12"
+                      name="Postal Code" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[TotalWeight]"
+                      dataType="r4"
+                      name="TotalWeight" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Sales Order Type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="28"
+                      name="Sales Order Type" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Adjustment]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="Adjustment" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Net]"
+                      dataType="r4"
+                      name="Net" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Discount]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="Discount" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Total]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="Total" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Currency]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Currency" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Sales Channel Items]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1500"
+                      name="Sales Channel Items" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importar Archivo\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importar Archivo\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importar Archivo\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importar Archivo\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importar Archivo\Origen de archivo plano"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Origen de archivo plano;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen de archivo plano"
+              localeId="4106"
+              name="Origen de archivo plano"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si las columnas de longitud cero se tratan como NULL."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre de una columna de salida que contiene el nombre de archivo. Si no se especifica ningún nombre, no se genera ninguna columna de salida con el nombre de archivo."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importar Archivo\Origen de archivo plano.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SALESORDERS]"
+                  connectionManagerRefId="Package.ConnectionManagers[SALESORDERS]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano]"
+                  name="Salida de origen de archivo plano">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Order Date]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Order Date]"
+                      length="19"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Order Date]"
+                      name="Order Date"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Order Number]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Order Number]"
+                      length="19"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Order Number]"
+                      name="Order Number"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Buyer]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Buyer]"
+                      length="255"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Buyer]"
+                      name="Buyer"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[PhysicalLocationSummary]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[PhysicalLocationSummary]"
+                      length="101"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[PhysicalLocationSummary]"
+                      name="PhysicalLocationSummary"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[OutboundShipmentSummary]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[OutboundShipmentSummary]"
+                      length="255"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[OutboundShipmentSummary]"
+                      name="OutboundShipmentSummary"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Package Type]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Package Type]"
+                      length="14"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Package Type]"
+                      name="Package Type"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Fulfillment Source Channel]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Fulfillment Source Channel]"
+                      length="46"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Fulfillment Source Channel]"
+                      name="Fulfillment Source Channel"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Shipment Container Name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Shipment Container Name]"
+                      length="255"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Shipment Container Name]"
+                      name="Shipment Container Name"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Earliest Ship Date]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Earliest Ship Date]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Earliest Ship Date]"
+                      name="Earliest Ship Date"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Latest Ship Date]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Latest Ship Date]"
+                      length="18"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Latest Ship Date]"
+                      name="Latest Ship Date"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[ShiptoStreet]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[ShiptoStreet]"
+                      length="133"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[ShiptoStreet]"
+                      name="ShiptoStreet"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Estimated Delivery Date]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Estimated Delivery Date]"
+                      length="18"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Estimated Delivery Date]"
+                      name="Estimated Delivery Date"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[HaveShippingLabels]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[HaveShippingLabels]"
+                      length="255"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[HaveShippingLabels]"
+                      name="HaveShippingLabels"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Batch]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Batch]"
+                      length="255"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Batch]"
+                      name="Batch"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[PrintQueue]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[PrintQueue]"
+                      length="255"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[PrintQueue]"
+                      name="PrintQueue"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Status]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Status]"
+                      length="9"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Status]"
+                      name="Status"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Notes]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Notes]"
+                      length="255"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Notes]"
+                      name="Notes"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Hold Codes]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Hold Codes]"
+                      length="11"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Hold Codes]"
+                      name="Hold Codes"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Special Handling]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Special Handling]"
+                      length="255"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Special Handling]"
+                      name="Special Handling"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[ERP Number]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[ERP Number]"
+                      length="14"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[ERP Number]"
+                      name="ERP Number"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Sales Channel]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Sales Channel]"
+                      length="15"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Sales Channel]"
+                      name="Sales Channel"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Items]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Items]"
+                      length="1185"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Items]"
+                      name="Items"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Sales Channel Items]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Sales Channel Items]"
+                      length="1187"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Sales Channel Items]"
+                      name="Sales Channel Items"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[ORM-D]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[ORM-D]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[ORM-D]"
+                      name="ORM-D"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Harmonized Tariff]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Harmonized Tariff]"
+                      length="10"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Harmonized Tariff]"
+                      name="Harmonized Tariff"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[ShippingServiceLevel]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[ShippingServiceLevel]"
+                      length="41"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[ShippingServiceLevel]"
+                      name="ShippingServiceLevel"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[EarliestShipmentStatusDate]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[EarliestShipmentStatusDate]"
+                      length="18"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[EarliestShipmentStatusDate]"
+                      name="EarliestShipmentStatusDate"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[TrackingNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[TrackingNumber]"
+                      length="389"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[TrackingNumber]"
+                      name="TrackingNumber"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Customer]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Customer]"
+                      length="62"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Customer]"
+                      name="Customer"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Fulfillment Ship Location]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Fulfillment Ship Location]"
+                      length="138"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Fulfillment Ship Location]"
+                      name="Fulfillment Ship Location"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[PO Number(s)]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[PO Number(s)]"
+                      length="73"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[PO Number(s)]"
+                      name="PO Number(s)"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[City]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[City]"
+                      length="27"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[City]"
+                      name="City"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[State]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[State]"
+                      length="12"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[State]"
+                      name="State"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Country]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Country]"
+                      length="13"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Country]"
+                      name="Country"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Postal Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Postal Code]"
+                      length="12"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Postal Code]"
+                      name="Postal Code"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[TotalWeight]"
+                      dataType="r4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[TotalWeight]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[TotalWeight]"
+                      name="TotalWeight"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Sales Order Type]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Sales Order Type]"
+                      length="14"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Sales Order Type]"
+                      name="Sales Order Type"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Adjustment]"
+                      dataType="i1"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Adjustment]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Adjustment]"
+                      name="Adjustment"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Net]"
+                      dataType="r4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Net]"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Net]"
+                      name="Net"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Discount]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Discount]"
+                      length="7"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Discount]"
+                      name="Discount"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Total]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Total]"
+                      length="9"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Total]"
+                      name="Total"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Currency]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Currency]"
+                      length="3"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Currency]"
+                      name="Currency"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Order Date]"
+                      codePage="1252"
+                      dataType="str"
+                      length="19"
+                      name="Order Date" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Order Number]"
+                      codePage="1252"
+                      dataType="str"
+                      length="19"
+                      name="Order Number" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Buyer]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Buyer" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[PhysicalLocationSummary]"
+                      codePage="1252"
+                      dataType="str"
+                      length="101"
+                      name="PhysicalLocationSummary" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[OutboundShipmentSummary]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="OutboundShipmentSummary" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Package Type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      name="Package Type" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Fulfillment Source Channel]"
+                      codePage="1252"
+                      dataType="str"
+                      length="46"
+                      name="Fulfillment Source Channel" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Shipment Container Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Shipment Container Name" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Earliest Ship Date]"
+                      dataType="date"
+                      name="Earliest Ship Date" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Latest Ship Date]"
+                      codePage="1252"
+                      dataType="str"
+                      length="18"
+                      name="Latest Ship Date" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[ShiptoStreet]"
+                      codePage="1252"
+                      dataType="str"
+                      length="133"
+                      name="ShiptoStreet" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Estimated Delivery Date]"
+                      codePage="1252"
+                      dataType="str"
+                      length="18"
+                      name="Estimated Delivery Date" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[HaveShippingLabels]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="HaveShippingLabels" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Batch]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Batch" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[PrintQueue]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="PrintQueue" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="Status" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Notes]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Notes" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Hold Codes]"
+                      codePage="1252"
+                      dataType="str"
+                      length="11"
+                      name="Hold Codes" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Special Handling]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Special Handling" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[ERP Number]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      name="ERP Number" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Sales Channel]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="Sales Channel" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Items]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1185"
+                      name="Items" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Sales Channel Items]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1187"
+                      name="Sales Channel Items" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[ORM-D]"
+                      dataType="bool"
+                      name="ORM-D" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Harmonized Tariff]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="Harmonized Tariff" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[ShippingServiceLevel]"
+                      codePage="1252"
+                      dataType="str"
+                      length="41"
+                      name="ShippingServiceLevel" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[EarliestShipmentStatusDate]"
+                      codePage="1252"
+                      dataType="str"
+                      length="18"
+                      name="EarliestShipmentStatusDate" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[TrackingNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="389"
+                      name="TrackingNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Customer]"
+                      codePage="1252"
+                      dataType="str"
+                      length="62"
+                      name="Customer" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Fulfillment Ship Location]"
+                      codePage="1252"
+                      dataType="str"
+                      length="138"
+                      name="Fulfillment Ship Location" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[PO Number(s)]"
+                      codePage="1252"
+                      dataType="str"
+                      length="73"
+                      name="PO Number(s)" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[City]"
+                      codePage="1252"
+                      dataType="str"
+                      length="27"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[State]"
+                      codePage="1252"
+                      dataType="str"
+                      length="12"
+                      name="State" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Country]"
+                      codePage="1252"
+                      dataType="str"
+                      length="13"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Postal Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="12"
+                      name="Postal Code" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[TotalWeight]"
+                      dataType="r4"
+                      name="TotalWeight" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Sales Order Type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      name="Sales Order Type" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Adjustment]"
+                      dataType="i1"
+                      name="Adjustment" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Net]"
+                      dataType="r4"
+                      name="Net" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Discount]"
+                      codePage="1252"
+                      dataType="str"
+                      length="7"
+                      name="Discount" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Total]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="Total" />
+                    <externalMetadataColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Currency]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="Currency" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de archivo plano">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[Columna de salida de error de origen de archivo plano]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Columna de salida de error de origen de archivo plano"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[Columna de salida de error de origen de archivo plano]"
+                      name="Columna de salida de error de origen de archivo plano" />
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Importar Archivo.Paths[Salida de origen de archivo plano]"
+              endId="Package\Importar Archivo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+              name="Salida de origen de archivo plano"
+              startId="Package\Importar Archivo\Origen de archivo plano.Outputs[Salida de origen de archivo plano]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Transformar Data"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{953D3C0C-32A1-467B-9636-94680314D192}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Transformar Data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DAB583C3-1F25-422E-B5E1-2EAFF84DD0EB}"
+          SQLTask:SqlStatementSource="EXECUTE TransfomaDatosALEORDENVENTA" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{E2C4DEC6-96A3-4A20-A438-10BB232235FF}"
+      DTS:From="Package\BORRAR TABLA SALEORDERS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\Importar Archivo" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{D808D44F-BF3C-4BE9-940E-8A23319639F1}"
+      DTS:From="Package\Importar Archivo"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\Transformar Data" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="176,42"
+          Id="Package\BORRAR TABLA SALEORDERS"
+          TopLeft="196,86" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Importar Archivo"
+          TopLeft="195,159" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Transformar Data"
+          TopLeft="190,235" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="284,128">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-9,31"
+              Start="0,0"
+              End="-9,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.5"
+                    Point2="0,15.5"
+                    Point3="-4,15.5" />
+                  <mssgle:LineSegment
+                    End="-5,15.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5,15.5"
+                    Point2="-9,15.5"
+                    Point3="-9,19.5" />
+                  <mssgle:LineSegment
+                    End="-9,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="278.75,201">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34"
+              Start="0,0"
+              End="0,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Importar Archivo">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Importar Archivo\Destino de OLE DB"
+          TopLeft="314,206" />
+        <NodeLayout
+          Size="196,42"
+          Id="Package\Importar Archivo\Origen de archivo plano"
+          TopLeft="308.5,79.5" />
+        <EdgeLayout
+          Id="Package\Importar Archivo.Paths[Salida de origen de archivo plano]"
+          TopLeft="404,121.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,84.5"
+              Start="0,0"
+              End="0,77">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,77" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Importar Archivo\Destino de OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
